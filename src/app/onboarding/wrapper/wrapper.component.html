@@ -1,0 +1,24 @@
+<div class="wrapper-header p-5">
+    <div class="d-flex justify-content-between">
+        <div>
+            <div class="logo">
+                <img src="assets/images/logo.svg">
+            </div>
+        </div>
+        <div>
+            <div class="landuageSel">
+                <mat-select [value]="currentLang" [ngClass]="currentLang" (selectionChange)='useLanguage($event.value)'>
+                    <mat-select-trigger>
+                        {{currentLang.substr(0,2) | uppercase}}
+                    </mat-select-trigger>
+                    <mat-option value="en"> <img width="30" height="30" src="assets/images/eng.svg"> {{ "english" | translate}} </mat-option>
+                    <mat-option value="nl"> <img with="30" height="30" src="assets/images/netherland.svg"> {{ "netherland" | translate}} </mat-option>
+                    <!-- <mat-option value="fr"> <img with="30" height="30" src="assets/images/french.svg"> {{ "french" | translate}} </mat-option> -->
+                    <!-- <mat-option value="de"> <img with="30" height="30" src="assets/images/german.svg"> {{ "german" | translate}} </mat-option> -->
+                </mat-select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

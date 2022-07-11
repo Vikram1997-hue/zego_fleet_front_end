@@ -1,0 +1,71 @@
+<div class="titleWithBack ">
+    <span class="backBtnImg cursor" (click)="goToLastPage()"><img src="assets/images/backButton.png"></span>
+    <h4 class="BackTitle"> {{"sidebar.groups" | translate}}</h4>
+</div>
+<div class="filterBody">
+    <h5 class="editTitle">Edit sub group </h5>
+    <div class="editRule">
+        <p class="editRuleTitle">You are editing sub group for:</p>
+        <p class="editRuleTitleBack">{{orgName || ''}}</p>
+    </div>
+    <form [formGroup]='editGroupForm'>
+        <div class="profileBox">
+
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput placeholder="Enter users first name" formControlName='firstName'>
+            </mat-form-field>
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>Last name</mat-label>
+                <input matInput placeholder="Enter users last name" formControlName='lastName'>
+            </mat-form-field>
+
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>{{"email" | translate}}</mat-label>
+                <input matInput placeholder="Enter users email" formControlName='email' readonly>
+            </mat-form-field>
+
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Enter sub group clients address" formControlName='address'>
+            </mat-form-field>
+        
+      
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <!-- <mat-label>Contact number</mat-label> -->
+                <input matInput type="tel" ng2TelInput numbersOnly
+                    [ng2TelInputOptions]="{initialCountry: countryCodeIso,separateDialCode: 'true'}"
+                    (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)"
+                    (intlTelInputObject)="telInputObject($event,countryCodeIso)"
+                    (countryChange)="onCountryChange($event)" class="country-flag" formControlName="phone"
+                    minlength="10" />
+                <!-- <input matInput placeholder="Enter sub group clients contact number" formControlName='phone'> -->
+            </mat-form-field>
+
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>Group name</mat-label>
+                <input matInput placeholder="Enter sub group name" formControlName='group_title' readonly>
+            </mat-form-field>
+
+
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName='status'>
+                    <mat-option [value]="item?.value" *ngFor="let item of roleArray">{{item?.key}} </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+        </div>
+        <h4 class="vehTitle mb-4">Accessess granted to this sub group:</h4>
+        <section class="accesClientCheck">
+            <mat-checkbox [checked]='checkForItem(item.value)' *ngFor="let item of rolePermission; let i=index" (change)="checkboxChecked($event,i)">{{item?.tab}}</mat-checkbox>
+        </section>
+        <ng-container class="py-3" *ngIf="isloading">
+            <mat-spinner style="margin: 0 auto;" [diameter]='50'></mat-spinner>
+        </ng-container>
+        <div class="BtnBlock">
+            <button class="btn btnSave" (click)="submit()">{{"rule.save" | translate}}</button>
+        </div>
+    </form>
+</div>

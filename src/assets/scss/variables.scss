@@ -1,0 +1,219 @@
+/*NEW COLOR LIST*/
+$C_Primary_Orange: #fd5e02;
+$new_primary_black: #231f20; 
+$C_Primary_White: #fff;
+$new_sidebar_bg_color: #fff;
+$new_sidebar_active: #60269e;
+$new_header_bg_color: #fff;
+$new_main_bg_color: #e5eeff;
+$new_list_text_color: rgba(0,0,0,.87);
+
+
+$lightblue: #0057ff;
+$drak_Blue: #2962ff;
+$sblue: #1b194b;
+$white: #ffffff;
+$lightblack: #171c22;
+$lightgray: #939eaa;
+$fgray: #7d8592;
+$Secondary_black: #001e50;
+$Primary_Blue: #0064ff;
+$Secondary_Blue: #604eff;
+$btnExportBlue: #4c6fff;
+$danger: #ff7070;
+$Secondary_Alerts: #00cba0;
+$noInfo: #18a0fb;
+$Secondary_Dark: #2a1e91;
+$dark: #323338;
+$borderColor: #c5cdd4;
+$lightWhitecolor: #f9fafb;
+$groupBorderData: #e6e7e8;
+$lightmixblueWhitecolor: #e0e3e7;
+$whiteShadow: #e9ebf0;
+$skyBlue: #4dbfff;
+$yellow: #ffea6c;
+$orange: #ff9950;
+$bodyBackGray: #fdfcff;
+$lightBlack: rgba(0, 0, 0, 0.54);
+$exportBtn: rgba(96, 78, 255, 0.1);
+$dangerBoxBack: rgba(255, 112, 112, 0.1);
+$greenBoxBack: rgba(0, 203, 160, 0.1);
+$tableOddBack: #fbfbfb;
+$Secondary_Blue_dark: #7555cf;
+$black: #000000;
+$nightTextColor: #474f5a;
+$nightBackBlack: #667280;
+$whiteColor: #e1e1e1;
+$redColor: #ed502e;
+$dark_gray: #bdbdbd;
+$helpBtn_Blue: #602aac;
+$dateColor: #4e5d78;
+$dayColor: #4e5d787a;
+$redActiveColor: #fa1464;
+$whiteColorBack: #f7fcff;
+$blackDark: #27272e;
+$whiteGrayBack: #f7fcff;
+//input css
+$borderColorLight: #e8ecee;
+$borderColorGray: #eeedf0;
+$lightWhite: #e5eeff;
+$btnDefaultWhite: #f4f6f8;
+$matBorder: #e6e7e8;
+
+$toggleActive: #0064ff;//#371986;
+
+//rgba css
+$behaviourBack: rgba(96, 78, 255, 0.08);
+$monthShowBack: rgba(86, 66, 255, 0.1);
+$boxShadow: rgba(0, 0, 0, 0.12);
+$backDanger: rgba(255, 112, 112, 0.4);
+$backGreen: rgb(0 203 160 / 15%);
+$safeScoreBack: rgba(255, 112, 112, 0.1);
+$backGrayCommon: rgba(135, 135, 135, 0.05);
+$quiteRoad: #ffea6c;
+
+//new color version2
+$redException: #fa1464;
+$boxshadow: 0px 8px 25px rgba(98, 98, 98, 0.05);
+$tooltipsTextColor: #16192c;
+
+//box gradiant Background
+$vehicalBoxBack: linear-gradient(134.92deg, #81bbff -4.2%, #0085ff 99.37%);
+$drivenBoxBack: linear-gradient(92.69deg, #5a6bff 0.69%, #604eff 102.2%);
+$behaviourBoxBack: linear-gradient(92.69deg, #8c46ff 0.69%, #ff8080 102.2%);
+$evBlockBoxBack: linear-gradient(93.52deg, #39d0ff -18.56%, #ffe977 102.17%);
+$iceBoxBack: linear-gradient(93.52deg, #f0825d -18.56%, #ff9950 102.17%);
+
+//box v2 gradiant Background
+$iceBoxV2: linear-gradient(93.52deg, #f0825d -18.56%, #ff9950 102.17%);
+$driverBoxV2: linear-gradient(93.52deg, #39d0ff -18.56%, #3656ff 102.17%);
+$kilometerBoxV2: linear-gradient(133.39deg, #4985f8 -4.22%, #4dbfff 104.24%);
+$safeDrivingBoxV2: linear-gradient(93.52deg, #45c8f1 -18.56%, #eee097 102.17%);
+$driver1BoxV2: linear-gradient(92.69deg, #76d6ee 0.69%, #7698db 102.2%);
+$tripBoxV2: linear-gradient(93.52deg, #c2a3a0 -18.56%, #e9c8a7 102.17%);
+$vehicleBoxV2: linear-gradient(134.92deg, #df9895 -4.2%, #c2a3a0 108.15%);
+
+//scroll bar color code
+$scrollBlack: #888;
+$scrollWhite: #f1f1f1;
+$scrollHoverBlack: #555;
+
+//white label flead color
+// $White_labing_Black:#000000;
+// $White_labing_Yellow:#EFA952;
+// $White_labing_skyBlue:#4DBFFF;
+// $White_labing_backGray:#EEF9FF;
+
+//white label dhl color
+// $White_labing_Black:#000000;
+// $White_labing_Yellow:#d40511;
+// $White_labing_skyBlue:#4DBFFF;
+// $White_labing_backGray:#EEF9FF;
+// $white_labing_yellowdark:#FFCC00;
+
+//white label Zego color
+$White_labing_Black: #000000;
+$White_labing_Yellow: #371987;
+$White_labing_skyBlue: #4dbfff;
+$White_labing_backGray: #eef9ff;
+$white_labing_yellowdark: #ffcc00;
+$color_violet: #8775b7;
+$color_violet_dark: #321987;
+$color_light_grey: #e5e5e5;
+$color-violet-light: #ac94ee;
+$color-blue-light: #f5f5f5;
+$color-table-heading: #27252d;
+$tripHistBack: rgba(151, 151, 151, 0.05);
+$safeBackColor: rgba(0, 203, 160, 0.05);
+$color_light_blue: #45cbfc;
+$color_graph_voilet: #371a87;
+
+//gradiant Background
+$errorGradiant: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.9)
+  ),
+  #f44336;
+
+@mixin flex-justify {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@mixin  line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin border-bottom {
+  border-bottom: 0.5px solid $lightmixblueWhitecolor;
+}
+
+@mixin btnFilter {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 0px;
+}
+@mixin msg {
+  font: 12px/18px ModernEra !important;
+  padding: 3px 30px;
+  color: $white;
+  border-radius: 24px;
+}
+
+@mixin mainBoxwithBack {
+  background: $white;
+  box-shadow: 0px -5px 123px rgba(87, 84, 160, 0.08);
+  border-radius: 8px;
+}
+// @mixin button-green {
+// max-width : 250px;
+// width : 100%;
+// height : 50px;
+// background : #11D0A2;
+// border-radius: 145px;
+// font-weight : 600;
+// font-size : 15px;
+// line-height : 18px;
+// color : #ffffff;
+// }
+
+// @mixin button-blue {
+// font : 13px/16px ModernEra;
+// color : #FFFFFF;
+// background : linear-gradient(0deg, #7555CF, #7555CF), #643FC0;
+// border-radius: 20px;
+// max-width : 140px;
+// width : 100%;
+// height : 38px;
+// }
+
+// @mixin button-red {
+// font : 16px/20px ModernEra;
+// color : #FFFFFF;
+// border-radius: 100px;
+// max-width : 250px;
+// width : 100%;
+// height : 50px;
+// background : #FF6565;
+// }

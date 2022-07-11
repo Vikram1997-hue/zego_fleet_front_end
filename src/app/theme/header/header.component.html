@@ -1,0 +1,132 @@
+<div class="headerSec">
+    <div class="matSelect">
+        <mat-form-field class="matsel" appearance="outline">
+            <mat-label>{{ "header.selectOrg" | translate}}</mat-label>
+            <input  matInput type="text"  placeholder="Select Organization" readonly [(ngModel)]="placeHolderValue" (click)="popupToggle()">
+        </mat-form-field>
+        <span class="dropUpIcon" (click)="popupToggle()">
+            <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.5 0.875L5.75 5.125L10 0.875" stroke="#474F5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                
+        </span>
+
+        <div class="orgzationpop" *ngIf="showPopup" (clickOutside)="popupToggle()">
+            <div class="search border-bottom">
+               
+                <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z" fill="#848588"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z" fill="#848588"/>
+                    </svg>
+                    </mat-icon>
+                <input class="search" matInput [ngModel]="search" placeholder="{{'searchheader' | translate}}"
+                    (ngModelChange)="search=$event;setChildOk($event,dataSource.data)">
+
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between border-bottom selAll">
+                <div>
+                    <p class="sel-title" [ngClass]="{'hide': countSelected() == 0 }">{{countSelected()}} {{"selected" | translate}}</p>
+                    <p class="sel-title" [ngClass]="{'hide': countSelected() > 0 }">{{"selectAll" | translate}}</p>
+                </div>
+
+                <div>
+                    <span class="clearAll cursor" [ngClass]="{'hide': countSelected() == 0 }" (click)="clearAllFiscal()">{{"clearAll" | translate}}</span>
+                    <mat-checkbox [ngClass]="{'hide': countSelected() > 0 }" (change)='selectAllFiscal()'>Select All</mat-checkbox>
+                </div>
+
+            </div>
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree tree-main">
+               
+                <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle
+                    [style.display]="!search || node.ok?'block':'none'">
+                    <li class="mat-tree-node">
+                       
+                        <button mat-icon-button disabled class="hide"></button>
+                        <mat-checkbox class="checklist-leaf-node hiddenCheckbox"
+                            (change)="todoItemSelectionToggle($event.checked,node)" [checked]="node.selected">
+                            {{node.name}}</mat-checkbox>
+                    </li>
+                </mat-tree-node>
+              
+                <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild"
+                    [style.display]="!search || node.ok?'block':'none'">
+                    <li>
+                        <div class="mat-tree-node">
+                            <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
+                                <mat-icon class="mat-icon-rtl-mirror">
+                                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                                </mat-icon>
+                            </button>
+                            <mat-checkbox [checked]="node.selected"
+                                [indeterminate]="node.indeterminate && !node.selected"
+                                (change)="todoItemSelectionToggle($event.checked,node)">{{node.name}}</mat-checkbox>
+                        </div>
+                        <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                            <ng-container matTreeNodeOutlet></ng-container>
+                        </ul>
+                    </li>
+                </mat-nested-tree-node>
+            </mat-tree>
+            <div class="appAll d-flex justify-content-end"> 
+                <button mat-button class="button-auth w-100" (click)="submit()" *ngIf="countSelected() > 1">{{"headerapplyall" | translate}}</button>
+                <button mat-button class="button-auth w-100" (click)="submit()" *ngIf="countSelected() <= 1">{{"apply" | translate}}</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="dateTimepicker">
+        <span>{{"header.daterange" | translate}}: {{showRange}}</span>
+    </div>
+    <div class="d-flex flex-wrap ">
+        <div class="landuageSel">
+            <mat-select [value]="currentLang" [ngClass]="currentLang" (selectionChange)='useLanguage($event.value)'>
+                <mat-select-trigger>
+                    {{currentLang.substr(0,2) | uppercase}}
+                </mat-select-trigger>
+                <mat-option value="en"> <img width="30" height="30" src="assets/images/eng.svg"> {{ "english" |
+                    translate}}
+                </mat-option>
+                <mat-option value="nl"> <img with="30" height="30" src="assets/images/netherland.svg"> {{ "netherland" |
+                    translate}} </mat-option>
+                <!-- <mat-option value="fr"> <img with="30" height="30" src="assets/images/french.svg"> {{ "french" |
+                    translate}}
+                </mat-option>
+                <mat-option value="de"> <img with="30" height="30" src="assets/images/german.svg"> {{ "german" |
+                    translate}}
+                </mat-option> -->
+            </mat-select>
+        </div>
+        <div class="profileSec">
+            <div class="profile">
+                <img [src]="profileImage">
+            </div>
+            <div class="userDetail">
+                <h4 class="mb-0 text-capitalize">{{namedetails?.firstName}} {{namedetails?.lastName}}</h4>
+                <p class="mb-0">{{namedetails?.role}}</p>
+            </div>
+            <div class="matSelectDropDown">
+                <mat-select [disableOptionCentering]="true" panelClass="myPanelClass">
+                    <!-- <mat-option>
+                        <h4 class="mb-0 text-capitalize">{{namedetails?.firstName}} {{namedetails?.lastName}}</h4>
+                    </mat-option>
+                    <mat-option>
+                        <p class="mb-0">Fleet Consultant, Staff</p>
+                    </mat-option> -->
+                    <mat-option (click)="routeToProfile()">
+                        <mat-icon> <img src="assets/images/profile-circle.svg"></mat-icon> {{ "header.manageProfile" | translate}}
+                    </mat-option>
+                    <mat-option (click)="routeToSupport()">
+                        <mat-icon>  <img src="assets/images/support.svg"></mat-icon> {{ "header.support" | translate}}
+                    </mat-option>
+                    <!-- <mat-option>
+                        <mat-icon><img  src="assets/images/notification.svg"></mat-icon> {{ "header.alerts" | translate}}
+                    </mat-option> -->
+                    <mat-option (click)="OpenModal()">
+                        <mat-icon><img src="assets/images/logout.svg"></mat-icon> {{ "header.logout" | translate}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </div>
+    </div>
+</div>

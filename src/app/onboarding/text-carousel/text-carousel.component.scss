@@ -1,0 +1,13 @@
+@import "../../../assets/scss/variables.scss";
+::ng-deep{
+    .carousel-section{
+        .owl-dot.active{
+            span{
+                background: $Secondary_Alerts !important;
+            }
+        }
+    }
+}
+p{
+    color: $white;
+}

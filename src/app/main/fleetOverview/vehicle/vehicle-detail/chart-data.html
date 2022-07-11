@@ -1,0 +1,24 @@
+
+<button mat-button class="close" (click)="onNoClick()"><img src="assets/images/Close.svg"></button>
+<div mat-dialog-content>
+    <span class="chartZoom cursor" (click)="resetZoom()">Zoom Reset</span>
+    <div class="chartDiv">
+        <canvas id="popupChart"></canvas>
+    </div>
+    <ng-container *ngIf="data.type == 1; else elseTemplate">
+        <h5 class="profileNameDark text-center">{{"t.speedProfile" | translate}}</h5>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <ng-container *ngIf="data.type == 2; else elseTemplate1">
+            <h5 class="profileNameDark text-center mb-0">{{"t.accProfile" | translate}}</h5>
+        </ng-container>
+        <ng-template #elseTemplate1>
+            <ng-container *ngIf="data.type == 3; else elseTemplate">
+                <h5 class="profileNameDark text-center mb-0">{{ "dayvsnightdrivingscore" | translate }}</h5>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <h5 class="profileNameDark text-center mb-0">{{"vdScore" | translate}}</h5>
+            </ng-template>
+        </ng-template>
+    </ng-template>
+</div>

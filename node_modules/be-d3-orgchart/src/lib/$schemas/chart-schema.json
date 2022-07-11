@@ -1,0 +1,176 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "BE-ORGCHART Schema",
+    "description": "Schema for be-orgchart.",
+    "default": {},
+    "examples": [
+        {
+            "nodes": [
+                {
+                    "nodeId": "root",
+                    "parentNodeId": "",
+                    "nodeImage": {
+                        "url": "https://image.link",
+                        "icon": "home"
+                    },
+                    "title": "John Doe",
+                    "description": "He is the boss"
+                }
+            ]
+        }
+    ],
+    "required": [
+        "nodes"
+    ],
+    "additionalProperties": true,
+    "properties": {
+        "nodes": {
+            "$id": "#/properties/nodes",
+            "type": "array",
+            "title": "orgchart nodes",
+            "description": "Array of nodes. Must have only one root.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "nodeId": "root",
+                        "parentNodeId": "",
+                        "nodeImage": {
+                            "url": "https://image.link",
+                            "icon": "home"
+                        },
+                        "title": "John Doe",
+                        "description": "He is the boss"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "anyOf": [
+                    {
+                        "$id": "#/properties/nodes/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "nodeId": "root",
+                                "parentNodeId": "",
+                                "nodeImage": {
+                                    "url": "https://image.link",
+                                    "icon": "home"
+                                },
+                                "title": "John Doe",
+                                "description": "He is the boss"
+                            }
+                        ],
+                        "required": [
+                            "nodeId",
+                            "parentNodeId",
+                            "nodeImage",
+                            "title",
+                            "description"
+                        ],
+                        "additionalProperties": true,
+                        "properties": {
+                            "nodeId": {
+                                "$id": "#/properties/nodes/items/anyOf/0/properties/nodeId",
+                                "type": "string",
+                                "title": "The nodeId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "root"
+                                ]
+                            },
+                            "parentNodeId": {
+                                "$id": "#/properties/nodes/items/anyOf/0/properties/parentNodeId",
+                                "type": "string",
+                                "title": "The parentNodeId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    ""
+                                ]
+                            },
+                            "nodeImage": {
+                                "$id": "#/properties/nodes/items/anyOf/0/properties/nodeImage",
+                                "type": "object",
+                                "title": "The nodeImage schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "url": "https://image.link",
+                                        "icon": "home"
+                                    }
+                                ],
+                                "required": [
+                                    "url",
+                                    "icon"
+                                ],
+                                "additionalProperties": true,
+                                "properties": {
+                                    "url": {
+                                        "$id": "#/properties/nodes/items/anyOf/0/properties/nodeImage/properties/url",
+                                        "type": "string",
+                                        "title": "The url schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "https://image.link"
+                                        ]
+                                    },
+                                    "icon": {
+                                        "$id": "#/properties/nodes/items/anyOf/0/properties/nodeImage/properties/icon",
+                                        "type": "string",
+                                        "title": "The icon schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "home"
+                                        ]
+                                    },
+                                    "base64": {
+                                        "$id": "#/properties/nodes/items/anyOf/0/properties/nodeImage/properties/base64",
+                                        "type": "string",
+                                        "title": "The icon schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "home"
+                                        ]
+                                    }                                    
+                                }
+                            },
+                            "title": {
+                                "$id": "#/properties/nodes/items/anyOf/0/properties/title",
+                                "type": "string",
+                                "title": "The title schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "John Doe"
+                                ]
+                            },
+                            "description": {
+                                "$id": "#/properties/nodes/items/anyOf/0/properties/description",
+                                "type": "string",
+                                "title": "The description schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "He is the boss"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "$id": "#/properties/nodes/items"
+            }
+        }
+    }
+}

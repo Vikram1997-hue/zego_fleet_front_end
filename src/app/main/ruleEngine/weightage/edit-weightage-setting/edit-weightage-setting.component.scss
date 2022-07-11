@@ -1,0 +1,35 @@
+@import ".../../../../../../../assets/scss/variables.scss";
+
+
+.filterBody{
+    // @include mainBoxwithBack;
+    // padding: 20px 30px;
+    .editTitle{
+        font: 600 18px/24px ModernEra;
+        color: $Secondary_black;
+        margin-bottom: 20px;
+    }
+}
+.BtnBlock {
+    text-align: center;
+    padding: 25px;
+    .btnSave {
+        padding: 15px 80px;
+        background: #0064FF;
+        border-radius: 100px;
+        margin: 0 14px;
+        font: 600 16px/22px ModernEra;
+        color: $white;
+    }
+}
+
+.profileBox {
+    .fields {
+        &.fileld33 {
+            margin: 0 15px 0 0;
+            &:nth-child(3n+4) {
+                margin-right: 0;
+            }
+        }
+    }
+}

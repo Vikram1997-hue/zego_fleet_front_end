@@ -1,0 +1,146 @@
+@import "../../../../../assets/scss/variables.scss";
+
+.vehicleInfo {
+    padding: 20px;
+    @include mainBoxwithBack;
+
+    .vehTitle {
+        font: 600 18px/25px ModernEra;
+        color: $Secondary_black;
+        margin-bottom: 5px;
+    }
+
+    .ruleTab {
+        @include flex-start;
+
+        p {
+            padding: 6px 24px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 40px;
+            color: $lightgray;
+            font: 500 15px/18px ModernEra;
+            margin: 12px 16px 12px 0;
+
+            &.active {
+                color: $White_labing_Black;
+                font: 600 15px/18px ModernEra;
+            }
+        }
+    }
+}
+
+.edit{
+    svg{
+        width: 25px;
+        path{
+            fill: $White_labing_Yellow;
+        }
+    }
+}
+
+.circlePlus{
+    background: $White_labing_Yellow;
+    padding: 16px;
+    border-radius: 50%;
+    border: 1px solid $White_labing_Yellow;
+    // svg{
+    //     path{
+    //         fill: $White_labing_Yellow;
+    //     }
+    // }
+}
+
+.booking-table {
+    th {
+        font: 500 12px/18px ModernEra;
+        color: $white;
+        // min-width: 100px;
+    }
+
+    .mat-sort-header-arrow {
+        color: $Secondary_Blue_dark;
+    }
+
+    td {
+        &.mat-cell {
+            font: 13px/16px ModernEra;
+            color: $black
+        }
+    }
+}
+
+tr.mat-header-row {
+    height: 34px;
+    background: $White_labing_Black;
+    border-radius: 5px;
+    color: $white;
+}
+
+mat-row,
+mat-footer-row,
+td.mat-cell,
+td.mat-footer-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $Secondary_black !important;
+
+}
+
+.date {
+    margin-right: 20px;
+    @include msg;
+}
+
+mat-row,
+mat-header-row,
+mat-footer-row,
+th.mat-header-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $white !important;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    &:nth-child(odd) {
+        background: $tableOddBack;
+        border-radius: 8px;
+        height: 34px;
+    }
+
+    &:nth-child(even) {
+        background: $white;
+    }
+}
+
+:host {
+    ::ng-deep {
+        .booking-table {
+
+            tr.mat-row,
+            tr.mat-footer-row {
+                height: 34px;
+            }
+        }
+    }
+}
+
+mat-form-field {
+    letter-spacing: .22px;
+    width: 100%;
+}
+
+.mat-table {
+    border-collapse: separate;
+    border-spacing: 0 10px !important;
+}
+.no-data{
+    padding: 30px 0px;
+}
+.activeFalse{
+    padding: 3px 35.5px !important;
+}
+::ng-deep .status-rule{
+    background: $errorGradiant!important;
+    padding: 14px 6px  !important;
+}

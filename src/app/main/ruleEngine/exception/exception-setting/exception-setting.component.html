@@ -1,0 +1,47 @@
+<div class="exceptionSettingBlock">
+    <p>You are editing rule for:</p>
+    <div class="mainBlock">
+        <h4 class="orgName">Organisation name / Sub organaisation name</h4>
+        <mat-form-field appearance="outline">
+            <mat-label>Select vehicle category</mat-label>
+            <mat-select>
+                <mat-option>a</mat-option>
+                <mat-option>b</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="mainGraphBlock">
+        <div class="slider" *ngFor="let item of list; let i = index">
+            <div class="slider__section">
+                <div class="slider__section__main-content d-flex justify-content-center">
+                    <div class="position-relative">
+                        <span class="firstValue"> {{item?.firstValue || 'NA'}}- </span>
+                        <span class="secondValue"> {{item?.secondValue || 'NA'}}- </span>
+                        <span class="thirdValue"> {{item?.thirdValue || 'NA'}}- </span>
+                        <span class="fourthValue">{{item?.fourthValue || 'NA'}}-</span>
+                        <mat-slider class="example-margin" vertical min="1" max="100" step="1" [value]="item?.value" (input)="changeValue($event,i)"></mat-slider>
+                    </div>
+                </div>
+                <div class="px-3 d-flex justify-content-center">
+                    <div class="slider__section__description text-center position-relative">
+                        <div [innerHTML]="item?.name">
+
+                        </div>
+                        <button class="position-absolute" mat-raised-button [matTooltip]="item?.message"
+                        matTooltipPosition="above"
+                            aria-label="Button that displays a tooltip when focused or hovered over">
+                             <img  src="/assets/images/caution_sign.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <div class="BtnBlock">
+        <button class="btn btnSave">Save</button>
+        <button class="btn btnSave">Reset to Hello Mobility standards</button>
+    </div>
+</div>

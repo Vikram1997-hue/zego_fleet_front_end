@@ -1,0 +1,167 @@
+<div
+  class="form-wrapper"
+  [ngStyle]="{ 'background-image': ' url(' + imageUrl + ')' }"
+>
+  <div class="bg-graphic">
+    <div class="card-outer" *ngIf="initialPage">
+      <h2 class="mb-1">{{ "addnew.title" | translate }}</h2>
+      <p class="subtitle">{{ "subtitle" | translate }}</p>
+      <form class="example-form" [formGroup]="resetForm">
+        <mat-form-field appearance="outline">
+          <mat-label> {{ "addnew.newpassword" | translate }}</mat-label>
+          <!-- placeholder="{{'addnew.pnewpassword' | translate}}" -->
+          <input
+            noSpaces
+            matInput
+            #cPass
+            type="password"
+            formControlName="password"
+            autocomplete="off"
+          />
+          <mat-icon
+            matSuffix
+            (click)="
+              cPass.type == 'password'
+                ? (cPass.type = 'text')
+                : (cPass.type = 'password')
+            "
+          >
+            <svg
+              [ngClass]="{ fill: f.password.touched && f.password.errors }"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z"
+                fill="#FF7070"
+              />
+            </svg>
+          </mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "addnew.cpassword" | translate }}</mat-label>
+          <!-- placeholder="{{'addnew.cpassword' | translate}}" -->
+          <input
+            noSpaces
+            matInput
+            #pPass
+            type="password"
+            formControlName="cpassword"
+          />
+          <mat-icon
+            matSuffix
+            (click)="
+              pPass.type == 'password'
+                ? (pPass.type = 'text')
+                : (pPass.type = 'password')
+            "
+          >
+            <svg
+              [ngClass]="{ fill: f.cpassword.touched && f.cpassword.errors }"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z"
+                fill="#FF7070"
+              />
+            </svg>
+          </mat-icon>
+        </mat-form-field>
+        <div class="error" *ngIf="error.val">
+          <span><img src="assets/images/AlertError.svg" /></span>
+          <span class="msg">{{ error.msg }} </span>
+          <span class="cursor" (click)="clearForm()"
+            ><img src="assets/images/Close.svg"
+          /></span>
+        </div>
+        <div class="button-onboarding justify-content-between">
+          <div
+            class="backSignin cursor text-center pt-3"
+            (click)="routeToSignin()"
+          >
+           <div class="d-flex justify-content-center">
+            <svg
+            class="mr-2"
+            width="21"
+            height="20"
+            viewBox="0 0 21 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.375 10H3.625"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.25 4.375L3.625 10L9.25 15.625"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+         <span> {{ "backtoSign" | translate }}</span>
+           </div>
+          </div>
+          <div class="d-flex justify-content-end mt-2">
+            <button mat-button class="button-auth w-100 mb-28 mt-3" (click)="submit()">
+                {{ "forget.forgetsubmit" | translate }}
+              </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-outer"  *ngIf="!initialPage">
+      <h2 class="mb-1">{{ "addnew.ptitle" | translate }}</h2>
+      <p class="subtitle">
+        {{ "addnew.your" | translate }}
+        <span>{{ "addnew.hmobility" | translate }}</span>
+        {{ "addnew.desc" | translate }}
+      </p>
+      <div class="button-onboarding">
+        <button
+          mat-button
+          class="button-auth w-100 mb-28"
+          (click)="routeToSignin()"
+        >
+         <span class="d-flex justify-content-center"> <svg
+            width="21"
+            height="20"
+            viewBox="0 0 21 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.375 10H3.625"
+              stroke="#001E50"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.25 4.375L3.625 10L9.25 15.625"
+              stroke="#001E50"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          {{ "backtoSign" | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="carousel-width">
+        <app-text-carousel></app-text-carousel>
+    </div> -->
+</div>

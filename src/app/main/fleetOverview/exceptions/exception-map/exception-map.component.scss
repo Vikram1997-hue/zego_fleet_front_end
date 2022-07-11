@@ -1,0 +1,72 @@
+@import "../../../../../assets/scss/variables.scss";
+
+.mapDiv{
+  padding: 16px;
+}
+
+#map {
+  width: 100%;
+  height: 515px;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 8px;
+}
+::ng-deep {
+    .main_exception_portion{
+
+        .exception_map_hover_card_plate {
+            color: $White_labing_Black;
+          }
+          svg {
+            path {
+              fill: $white;
+              stroke: $White_labing_Black;
+            }
+          }
+
+    }
+  
+}
+::ng-deep{
+    .gm-fullscreen-control{
+        background: #0064FF !important;
+        background-image: url('/assets/images/fullscreen_map.svg') !important;
+        background-repeat: no-repeat !important;
+        background-position: 50% !important;
+        height: 44px !important;
+        width: 44px !important;
+        border-radius: 50% !important;
+        img{
+            display: none !important;
+        }
+    }
+    .location-tick{
+      path{
+        fill: $Secondary_black;
+      }
+    }
+}
+
+.color-differentiation {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  .colors {
+    margin-left: 10px;
+    font: 700 16px/19px ModernEra_Bold;
+    color: $Secondary_black;
+    position: relative;
+    &:first-child {
+      margin-left: 0px;
+    }
+    .dots {
+      border-radius: 50%;
+      height: 13px;
+      width: 13px;
+      display: inline-block;
+    //   background: red;
+    }
+  }
+
+  
+}

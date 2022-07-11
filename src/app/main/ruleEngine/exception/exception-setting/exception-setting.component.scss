@@ -1,0 +1,130 @@
+@import ".../../../../../../../assets/scss/variables.scss";
+
+.exceptionSettingBlock {
+    background: $white;
+    border-radius: 12px;
+    padding: 22px 30px;
+
+    .mainBlock {
+        @include flex-justify;
+
+        .orgName {
+            padding: 20px;
+            font: 600 17px/16px ModernEra;
+            color: $Primary_Blue;
+            background: $lightWhitecolor;
+            border-radius: 8px;
+        }
+    }
+
+    .mainGraphBlock {
+        width: 100%;
+        background-color: $white;
+        .slider{
+            width: 20%;
+            display: inline-block;
+            &__section{
+                &__main-content{
+                    border-bottom: 1.5px solid $lightmixblueWhitecolor;
+                    ::ng-deep{
+                        .mat-slider-vertical{
+                            min-height: 330px;
+                            width: 64px;
+                        }
+                        .mat-slider-wrapper{
+                            border-radius: 20px;
+                            background: rgba(0, 0, 0, 0.05);
+                            width: 20px;
+                            bottom: 2px;
+                            .mat-slider-track-wrapper{
+                                width: 20px;
+                                border-radius: 20px;
+                            }
+                            .mat-slider-thumb{
+                                width: 35px;
+                                height: 35px;
+                                right: -17px;
+                                background-color: $white;
+                                box-shadow: 0px 5px 10px #00000025;
+                            }
+                            .mat-slider-track-background{
+                                width: 20px;
+                            }
+                            .mat-slider-track-fill{
+                                width: 20px;
+                                background: $Primary_Blue;
+                                background-color: $Primary_Blue;
+                            }
+                        }
+                    }
+                    .firstValue{
+                        position: absolute;
+                        top: 10%;
+                        left: -5px;
+                    }
+                    .secondValue{
+                        position: absolute;
+                        top: 35%;
+                        left: -5px
+                    }
+                    .thirdValue{
+                        position: absolute;
+                        top: 65%;
+                        left: -5px
+                    }
+                    .fourthValue{
+                        position: absolute;
+                        bottom: 2%;
+                        left: -30px;
+                    }
+                    span{
+                        color: $Secondary_black;
+                            font: 600 12px/16px ModernEra;
+                    }
+                }
+                &__description{
+                    height: 65px; 
+                    width: 100%;
+                    padding: 9px 0px;
+                    margin-top: 12px;
+                    background: $lightWhitecolor;
+                    ::ng-deep{
+                        span{
+                            color: $sblue;
+                            font: 600 16px/22px ModernEra;
+                        }
+                    }
+                    button{
+                        top: 8px;
+                        right: 20px;
+                        border: none;
+                        box-shadow: unset;
+                        padding: 0;
+                        margin: 0;
+                        background: transparent;
+                        line-height: 0px;
+                        min-width: 0px;
+                    }
+                    
+                }
+                .padding-span{
+                    padding: 22px 0px;
+                }
+            }
+            
+        }
+    }
+    .BtnBlock {
+        text-align: end;
+        padding: 25px;
+        .btnSave {
+            padding: 15px 80px;
+            background: $Primary_Blue;
+            border-radius: 100px;
+            margin: 0 14px;
+            font: 600 16px/16px ModernEra;
+            color: $white;
+        }
+    }
+}
+

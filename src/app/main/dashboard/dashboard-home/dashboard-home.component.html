@@ -1,0 +1,392 @@
+<div class="mainFilter">
+    <div class="filterHeader">
+        Dashboard
+        <div>
+            <button class="btn btnFiliter" (click)="changeState()" [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample"><img src="assets/images/filter.svg">
+            </button> <button class="btn btnFilterExport enable-click-event"><img
+                    src="assets/images/export.svg"></button>
+        </div>
+    </div>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="filterBody">
+            <div class="filterBodyTitle">
+                <h4>Filters</h4>
+                <span (click)="changeState()"><img src="assets/images/close-circle.svg"></span>
+            </div>
+
+            <div class="profileBox">
+                <mat-form-field class="ngx-daterangepicker-action-left fields fileld50" appearance="outline">
+                    <mat-label>{{"selectRange" | translate}}</mat-label>
+                    <input matInput ngxDaterangepickerMd [(ngModel)]="selectedShow" [showCustomRangeLabel]="true"
+                        [alwaysShowCalendars]="alwaysShowCalendars" [ranges]="ranges" [showClearButton]="false"
+                        [showCancel]="true" [linkedCalendars]="true" [isTooltipDate]="isTooltipDate"
+                        [isInvalidDate]="isInvalidDate" [locale]="{applyLabel: 'Set Date'}"
+                        (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                        [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
+                        [showRangeLabelOnInput]="showRangeLabelOnInput" readonly />
+                    <span class="calIconRight"><img src="assets/images/calendar.svg"></span>
+                </mat-form-field>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between mt-2">
+                <div>
+                </div>
+                <div class="d-flex flex-wrap">
+                    <div>
+                        <button (click)="resetToLastState();resetFilter()" mat-button
+                            class="filterBtn cancleBtn">Reset</button>
+                    </div>
+                    <div>
+                        <button (click)="filterApply()" mat-button class="filterBtn applyBtn">{{"apply" | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboardBox">
+    <div class="box">
+        <p class="title">{{"safeDrivingScore" | translate}}</p>
+        <h4 class="value">{{service.convertToDutch(dashBoardData?.safe_score) || '0'}}
+            <ng-container *ngIf="dashBoardData.safeScoreChange < 0; else elseTemplate11">
+                <span class="danger"><img
+                    src="assets/images/down-arrow.svg">{{service.convertToDutch(dashBoardData?.safeScoreChange) || '0'}}%</span>
+            </ng-container>
+            <ng-template #elseTemplate11>
+                <span class="success"><img
+                    src="assets/images/send.svg">{{service.convertToDutch(dashBoardData?.safeScoreChange) || '0'}}%</span>
+            </ng-template>
+        </h4>
+    </div>
+    <div class="box driver">
+        <p class="title"> {{"driver" | translate}}</p>
+        <h4 class="value">{{service.convertToDutch(dashBoardData?.total_drivers || '0')}}
+            <ng-container *ngIf="dashBoardData.driverChange < 0; else elseTemplate12">
+                <span class="danger"><img
+                    src="assets/images/down-arrow.svg">{{service.convertToDutch(dashBoardData?.driverChange) || '0'}}%</span>
+            </ng-container>
+            <ng-template #elseTemplate12>
+                <span class="success"><img
+                    src="assets/images/send.svg">{{service.convertToDutch(dashBoardData?.driverChange) || '0'}}%</span>
+            </ng-template>
+        </h4>
+    </div>
+    <div class="box trips">
+        <p class="title"> {{"sidebar.trip" | translate}}</p>
+        <h4 class="value">{{service.convertToDutch(dashBoardData?.total_trips)}}
+            <ng-container *ngIf="dashBoardData.tripChange < 0; else elseTemplate13">
+                <span class="danger"><img
+                    src="assets/images/down-arrow.svg">{{service.convertToDutch(dashBoardData?.tripChange) || '0'}}%</span>
+            </ng-container>
+            <ng-template #elseTemplate13>
+                <span class="success"><img
+                    src="assets/images/send.svg">{{service.convertToDutch(dashBoardData?.tripChange) || '0'}}%</span>
+            </ng-template>
+        </h4>
+    </div>
+    <div class="box vehicles">
+        <p class="title"> {{"v.vehicle" | translate}}</p>
+        <h4 class="value">{{service.convertToDutch(dashBoardData?.total_vehicles)}}
+            <ng-container *ngIf="dashBoardData.vehicleChange < 0; else elseTemplate14">
+                <span class="danger"><img
+                    src="assets/images/down-arrow.svg">{{service.convertToDutch(dashBoardData?.vehicleChange) || '0'}}%</span>
+            </ng-container>
+            <ng-template #elseTemplate14>
+                <span class="success"><img
+                    src="assets/images/send.svg">{{service.convertToDutch(dashBoardData?.vehicleChange) || '0'}}%</span>
+            </ng-template>
+        </h4>
+    </div>
+</div>
+
+<div class="exceptionBox mt-3">
+    <div class="exBox" [ngClass]="{'active': boxVal == 1}"  (click)="changeBoxValue(1)">
+        <div class="valueBox">
+            {{service.convertToDutch(dashBoardData?.speed_score)}}
+            <ng-container *ngIf="dashBoardData?.speedChange >= 0; else elseTemplate15">
+                <span class="green"><img
+                    src="assets/images/Iconsup.png"> {{service.convertToDutch(dashBoardData?.speedChange) || '0'}}% </span>
+            </ng-container>
+            <ng-template #elseTemplate15>
+                 <span class="red"><img
+                    src="assets/images/IconsDown.png"> {{service.convertToDutch(dashBoardData?.speedChange) || '0'}}% </span>
+            </ng-template>
+        </div>
+        <div class="speedChart" style="height: 100px">
+            <canvas id="speedingChart"></canvas>
+        </div>
+        <p class="expName">{{"speeding" | translate}}</p>
+    </div>
+    <div class="exBox" [ngClass]="{'active': boxVal == 5}" (click)="changeBoxValue(5)">
+        <div class="valueBox">
+            {{service.convertToDutch(dashBoardData?.idling_score)}} 
+            <ng-container *ngIf="dashBoardData?.idilingChange >= 0; else elseTemplate16">
+                <span class="green"><img
+                    src="assets/images/Iconsup.png"> {{service.convertToDutch(dashBoardData?.idilingChange) || '0'}}% </span>
+            </ng-container>
+            <ng-template #elseTemplate16>
+                 <span class="red"><img
+                    src="assets/images/IconsDown.png"> {{service.convertToDutch(dashBoardData?.idilingChange) || '0'}}% </span>
+            </ng-template>
+        </div>
+        <div class="speedChart" style="height: 100px">
+            <canvas id="idilingChart"></canvas>
+        </div>
+        <p class="expName">{{"idiling" | translate}}</p>
+    </div>
+    <div class="exBox" [ngClass]="{'active': boxVal == 2}" (click)="changeBoxValue(2)">
+        <div class="valueBox">
+            {{service.convertToDutch(dashBoardData?.acceleration_score)}} 
+            <ng-container *ngIf="dashBoardData?.accChange >= 0; else elseTemplate17">
+                <span class="green"><img
+                    src="assets/images/Iconsup.png"> {{service.convertToDutch(dashBoardData?.accChange) || '0'}}% </span>
+            </ng-container>
+            <ng-template #elseTemplate17>
+                 <span class="red"><img
+                    src="assets/images/IconsDown.png"> {{service.convertToDutch(dashBoardData?.accChange) || '0'}}% </span>
+            </ng-template>
+        </div>
+        <div class="speedChart" style="height: 100px">
+            <canvas id="accelerationChart"></canvas>
+        </div>
+        <p class="expName">{{"hardAcceleration" | translate}}</p>
+    </div>
+    <div class="exBox" [ngClass]="{'active': boxVal == 3}" (click)="changeBoxValue(3)">
+        <div class="valueBox">
+            {{service.convertToDutch(dashBoardData?.breaking_score)}} 
+            <ng-container *ngIf="dashBoardData?.brakingChange >= 0; else elseTemplate18">
+                <span class="green"><img
+                    src="assets/images/Iconsup.png"> {{service.convertToDutch(dashBoardData?.brakingChange) || '0'}}% </span>
+            </ng-container>
+            <ng-template #elseTemplate18>
+                 <span class="red"><img
+                    src="assets/images/IconsDown.png"> {{service.convertToDutch(dashBoardData?.brakingChange) || '0'}}% </span>
+            </ng-template>
+        </div>
+        <div class="speedChart" style="height: 100px">
+            <canvas id="brakingChart"></canvas>
+        </div>
+        <p class="expName">{{"hardBraking" | translate}}</p>
+    </div>
+    <div class="exBox" [ngClass]="{'active': boxVal == 4}" (click)="changeBoxValue(4)">
+        <div class="valueBox">
+            {{service.convertToDutch(dashBoardData?.cornering_score)}}
+            <ng-container *ngIf="dashBoardData?.cornerChange >= 0; else elseTemplate19">
+                <span class="green"><img
+                    src="assets/images/Iconsup.png"> {{service.convertToDutch(dashBoardData?.cornerChange) || '0'}}% </span>
+            </ng-container>
+            <ng-template #elseTemplate19>
+                 <span class="red"><img
+                    src="assets/images/IconsDown.png"> {{service.convertToDutch(dashBoardData?.cornerChange) || '0'}}% </span>
+            </ng-template>
+        </div>
+        <div class="speedChart" style="height: 100px">
+            <canvas id="corneringChart"></canvas>
+        </div>
+        <p class="expName">{{"harshCorner" | translate}}</p>
+    </div>
+</div>
+<!-- grapg section -->
+<div class="dashGraphBox">
+    <div class="boxBack left60">
+        <canvas id="myLineChart"></canvas>
+        <h4 class="graphTitle">{{title}}</h4>
+    </div>
+    <div class="boxBack right40 ">
+        <h4 class="exceptionTitle mb-0">{{"exceptionRatio" | translate}}</h4>
+        <div class="graphSide">
+            <canvas id="myChart" height="250"></canvas>
+        </div>
+        <!-- <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <div class="exceptionSide">
+
+                <div class="getRide">
+                    <p class="speed">Speeding</p>
+                    <p class="idiling">Idiling</p>
+                    <p class="ridOfmax1">Harsh Acceleration</p>
+                    <p class="braking">Harsh Braking</p>
+                    <p class="warning">Harsh Cornering</p>
+                </div>
+            </div>
+            
+        </div> -->
+    </div>
+</div>
+
+<!-- table -->
+
+<div class="dashGraphBox">
+    <div class="boxBack left60">
+        <h4 class="tableTitle">{{"top5Worstdriver" | translate}}</h4>
+        <div class="table-responsive">
+            <table mat-table [dataSource]="worstDriverdetail" class="mat-elevation-z8 w-100 booking-table">
+                <!-- Item Column -->
+                <ng-container matColumnDef="item">
+                    <th mat-header-cell *matHeaderCellDef> {{"d.driverName" | translate }} </th>
+                    <td mat-cell *matCellDef="let transaction"> {{transaction?.driver_detail?.first_name}}
+                        {{transaction?.driver_detail?.last_name}} </td>
+                    <!-- <td mat-footer-cell *matFooterCellDef> Total </td> -->
+                </ng-container>
+
+                <!-- Total trips Column -->
+                <ng-container matColumnDef="cost">
+                    <th mat-header-cell *matHeaderCellDef> {{"t.ride" | translate }}</th>
+                    <td mat-cell *matCellDef="let transaction"> {{service.convertToDutch(transaction?.total_trips)}}
+                    </td>
+                    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td> -->
+                </ng-container>
+
+                <!-- Safe score Column -->
+                <ng-container matColumnDef="score">
+                    <th mat-header-cell *matHeaderCellDef> {{"safeDrivingScore" | translate }} </th>
+                    <td mat-cell *matCellDef="let transaction">
+                        {{service.convertToDutch(transaction?.safe_score) || '0'}} </td>
+                    <!-- <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td> -->
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr> -->
+            </table>
+        </div>
+    </div>
+    <div class="boxBack right40-second p-5">
+
+        <!-- boxVal = 1 -->
+        <div class="speedingAverage" *ngIf="boxVal==1">
+            <h4 class="exceptionTitle speedtitle">{{"speedAverage" | translate}}</h4>
+            <!-- <div class="firsthaldf">
+                <span class="msg driveTooFast">
+
+                    {{service.convertToDutch(formatToFixed(exceptionData?.driven_too_fast,2))}}%
+                </span>
+                <h4 class="mb-0 driventitle"> {{"t.drivenFast" | translate}}</h4>
+                <div>
+                    <mat-progress-bar class="driveFast" mode="determinate" [value]="(exceptionData?.driven_too_fast)">
+                    </mat-progress-bar>
+                </div>
+            </div> -->
+            <div class="firsthaldf">
+                <span class="msg speedAvg">
+
+                    {{service.convertToDutch(formatToFixed(exceptionData?.avg_speed,2))}}
+                </span>
+                <h4 class="mb-0 avgspeed"> {{"t.avgSpeed" | translate}}</h4>
+                <div>
+                    <mat-progress-bar class="avgSpeed" mode="determinate" [value]="(exceptionData?.avg_speed)">
+                    </mat-progress-bar>
+                </div>
+            </div>
+            <div class="show5 w-100 cursor" (click)="routeToDriver(RULE_ID.RulePostedSpeedingId)">
+                {{"top5speeding" | translate}}
+            </div>
+        </div>
+
+        <!-- boxVal = 2 -->
+        <div class="harshAcceleration" *ngIf="boxVal==2">
+            <h4 class="exceptionTitle">{{"harshAccException" | translate}}</h4>
+            <div class="dashboardBox dataBox">
+                <div class="box box100 grayBox">
+                    <div class="leftData">
+                        <p class="title"> {{"totalNumDrivers" | translate}}</p>
+                        <h4 class="value noDrivers">{{service.convertToDutch(dashBoardData?.total_drivers || '0')}}</h4>
+                    </div>
+                </div>
+                <div class="box box100 grayBox">
+                    <div class="leftData">
+                        <p class="title"> {{"driverWhoViolated" | translate}}</p>
+                        <h4 class="value dViolated align-items-center">
+                            {{service.convertToDutch(exceptionData.violated_drivers)}} <span
+                                class="msg driveTooFast textWhite">{{service.convertToDutch(exceptionData.ratio)}}%</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="show5 w-100 cursor" (click)="routeToDriver(RULE_ID.RulePostedAccelerationId)">
+                    {{"top5acc" | translate}}
+                </div>
+            </div>
+        </div>
+
+        <!-- boxVal = 3 -->
+        <div class="harshBraking" *ngIf="boxVal==3">
+            <h4 class="exceptionTitle">{{"harshBrakingException" | translate}}</h4>
+            <div class="dashboardBox dataBox">
+                <div class="box box100 grayBox">
+                    <div class="leftData">
+                        <p class="title"> {{"totalNumDrivers" | translate}}</p>
+                        <h4 class="value noDrivers">{{service.convertToDutch(dashBoardData?.total_drivers || '0')}}</h4>
+                    </div>
+                </div>
+                <div class="box box100 grayBox">
+                    <div class="leftData">
+                        <p class="title"> {{"driverWhoViolated" | translate}}</p>
+                        <h4 class="value dViolated align-items-center">
+                            {{service.convertToDutch(exceptionData.violated_drivers)}} <span
+                                class="msg driveTooFast textWhite">{{service.convertToDutch(exceptionData.ratio)}}%</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="show5 w-100 cursor" (click)="routeToDriver(RULE_ID.RulePostedBreakingId)">
+                    {{"top5braking" | translate}}
+                </div>
+            </div>
+        </div>
+
+        <!-- boxVal = 4 -->
+        <div class="harshCornering" *ngIf="boxVal==4">
+            <h4 class="exceptionTitle">{{"harshCorneringException" | translate}}</h4>
+            <div class="dashboardBox dataBox">
+                <div class="box box100 grayBox">
+                    <div class="leftData">
+                        <p class="title"> {{"totalNumDrivers" | translate}}</p>
+                        <h4 class="value noDrivers">{{service.convertToDutch(dashBoardData?.total_drivers || '0')}}</h4>
+                    </div>
+                </div>
+                <div class="box box100 grayBox">
+                    <div class="leftData">
+                        <p class="title"> {{"driverWhoViolated" | translate}}</p>
+                        <h4 class="value dViolated align-items-center">
+                            {{service.convertToDutch(exceptionData?.violated_drivers)}} <span
+                                class="msg driveTooFast textWhite">{{service.convertToDutch(exceptionData?.ratio)}}%</span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="show5 w-100 cursor" (click)="routeToDriver(RULE_ID.RulePostedCorneringId)">
+                    {{"top5cornering" | translate}}
+                </div>
+            </div>
+        </div>
+
+        <!-- boxVal = 5 -->
+        <div class="idilingBox" *ngIf="boxVal==5">
+            <div class="">
+                <h4 class="exceptionTitle">{{"consumptionWhileidiling" | translate}}</h4>
+            </div>
+            <div class="dashboardBox dataBox">
+                <div class="box box100">
+                    <div class="leftData">
+                        <p class="title"> EV</p>
+                        <h4 class="value">{{service.convertToDutch(exceptionData?.ev)}} kWh</h4>
+                    </div>
+                    <div class="">
+                        <img src="assets/images/evCharge.png">
+                    </div>
+                </div>
+                <div class="box box100 iceBox">
+                    <div class="leftData">
+                        <p class="title"> ICE</p>
+                        <h4 class="value">{{service.convertToDutch(exceptionData?.ice)}} ltr</h4>
+                    </div>
+                    <div class="">
+                        <img src="assets/images/ice.png">
+                    </div>
+                </div>
+                <div class="show5 w-100 cursor" (click)="routeToDriver(RULE_ID.RulePostedIdlingId)">
+                    {{"top5idling" | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

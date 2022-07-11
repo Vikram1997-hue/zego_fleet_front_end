@@ -1,0 +1,220 @@
+@import ".../../../../../../../assets/scss/variables.scss";
+
+::ng-deep .mat-button-toggle-button {
+  svg {
+    path {
+      fill: $borderColor;
+    }
+  }
+}
+::ng-deep .mat-button-toggle-checked {
+  background-color: $White_labing_Yellow;
+  svg {
+    path {
+      fill: $white !important;
+    }
+  }
+}
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 35px;
+}
+.vech_details {
+  background: $white;
+  border-radius: 4px;
+  .details {
+    background: $lightWhitecolor;
+    min-height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      margin: 0;
+
+      font: 700 12px/18px ModernEra_Bold;
+      color: $Secondary_black;
+    }
+    .details-name {
+      @include ellipsis;
+      margin-bottom: 8px;
+      font: 700 14px/16px ModernEra_Bold;
+      color: $Secondary_black;
+    }
+  }
+}
+.speed-meter {
+  margin-top: 20px;
+  background: $white;
+  border-radius: 4px;
+  ::ng-deep{
+    .reading-block{
+      font: 600 13px/24px ModernEra !important;
+      color: #001E50 !important;
+      transform: translateY(36px) !important;
+    }
+  }
+  .meter-details {
+    border: 0.664234px solid #e0e3e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 105px;
+    border-radius: 4px;
+    padding-top: 10px;
+    h2 {
+      font: 700 10px/16px ModernEra_Bold;
+      color: $Secondary_black;
+      margin: 0;
+    }
+    &.active {
+      background: rgba(55, 25, 135, 0.2);
+    }
+  }
+}
+.vehicle-driving-score {
+  margin-top: 20px;
+  background: $white;
+  border-radius: 4px;
+  h2 {
+    font: 700 14px/16px ModernEra_Bold;
+    color: $Secondary_black;
+  }
+}
+ngx-gauge {
+  height: 63px !important;
+}
+.backpolarGreen {
+  margin-top: 20px;
+  background: $white;
+  border-radius: 4px;
+  padding: 12px;
+  .graphTitle {
+    font: 700 14px/23px ModernEra_Bold;
+    color: $Secondary_black;
+    text-align: center;
+  }
+  .graphTab {
+    &__checkbox {
+      &__safeScore {
+        cursor: pointer;
+        display: inline-block;
+        label {
+          cursor: pointer;
+          font: 700 10px/12px ModernEra_Bold;
+          color: $Secondary_black;
+        }
+        .checkbox-dynamic {
+          display: inline-block;
+          margin-right: 5px;
+          height: 10px;
+          width: 10px;
+          background: $Secondary_black;
+          border-radius: 2px;
+          &.activeSafeScore {
+            background-image: url("../../../../../assets/images/Check.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+      }
+      &__otherScore {
+        cursor: pointer;
+        display: inline-block;
+        margin-left: 10px;
+        &.limit{
+          .checkbox-dynamic-second {
+            background: $Secondary_Alerts !important;
+            &.activeOther {
+              background-image: url("../../../../../assets/images/Check.svg") !important;
+              background-repeat: no-repeat !important;
+              background-position: center !important;
+            }
+          }
+          label {
+            color: $Secondary_Alerts;
+          }
+        }
+        label {
+          cursor: pointer;
+          font: 700 10px/12px ModernEra;
+          color: $lightgray;
+        }
+        .checkbox-dynamic-second {
+          display: inline-block;
+          height: 10px;
+          width: 10px;
+          background: $lightgray;
+          border-radius: 2px;
+          margin-right: 5px;
+          &.activeOther {
+            background-image: url("../../../../../assets/images/Check.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+      }
+    }
+  }
+}
+.mapBox {
+  background: $white;
+  border-radius: 4px;
+  padding: 12px;
+  min-height: 830px;
+}
+.filterHeader {
+  padding: 13px 0px 20px !important;
+}
+
+#map {
+  border-radius: 4px;
+  padding: 12px;
+  min-height: 830px;
+}
+::ng-deep {
+  .gm-fullscreen-control {
+    background: #0064ff !important;
+    background-image: url("/assets/images/fullscreen_map.svg") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    height: 44px !important;
+    width: 44px !important;
+    border-radius: 50% !important;
+    img {
+      display: none !important;
+    }
+  }
+}
+
+.tripDetailsLeft {
+  overflow-x: hidden;
+  @media (min-width: 1400px) {
+    max-height: 830px;
+    height: 100%;
+    overflow-y: scroll;
+    margin-right: 20px;
+  }
+  @media (max-width: 1400px) {
+    flex-basis: calc(100%);
+    max-width: calc(100%);
+    margin-right: 0;
+    // height: auto;
+    // overflow-y: hidden;
+  }
+}
+
+.buttonLoad {
+  background: rgba(0, 100, 255, 0.05);
+  width: 200px;
+  // height: 34px;
+  border: $Primary_Blue;
+  border-radius: 100px;
+  color: $Primary_Blue;
+  padding: 10px;
+  font: 700 13px/22px Montserrat-SemiBold;
+
+  svg {
+      path {
+          fill: $white;
+      }
+  }
+}

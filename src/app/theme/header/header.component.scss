@@ -1,0 +1,315 @@
+// @import "../../../assets/scss/variables.scss";
+@import "../../../assets/scss/common_variables.scss";
+@import "../../../assets/scss/variables.scss";
+
+.headerSec {
+  background: $new_header_bg_color; //$White_labing_Yellow;
+  box-shadow: inset 0px -1px 0px $C_whiteShadow;
+  padding: 16px 33px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  
+  .dateTimepicker {
+    background: $white;
+    border: 1px solid #d3d7da;
+    border-radius: 38px;
+    padding: 10px 40px 10px 15px;
+    span {
+      color: $new_header_text_color !important;
+      font:700 12px/22px ModernEra;
+    }
+  }
+  .matSelect { //SELECT ORGANISATION
+    position: relative;
+    ::ng-deep{ 
+      mat-label{
+        color: $new_border_light_grey !important; //$white
+      }
+      
+      input {
+        color: $new_header_text_color !important; //$white
+      }
+      .mat-form-field-flex { //THE BORDER AROUND ORGANIZATION DROP DOWN
+        .mat-form-field-outline {
+          color: #d3d7da !important; //$white
+          &:hover{
+            border: 2px solid $new_primary_black; //FIX MEEEEEE
+          }
+        }
+      }
+    }
+    .dropUpIcon {
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      svg {
+        width: 16px;
+        height: 16px;
+        fill: $white;
+      }
+
+    }
+    .mat-form-field-label-wrapper {
+      font-size: 12px;
+    }
+    .mat-input-element {
+      color: $C_Secondary_black;
+      font-size: 14px;
+    }
+
+    .orgzationpop {
+      width: 334px;
+      display: inline-block;
+      background: $C_white;
+      box-shadow: 0px 25px 250px 46px rgb(7 6 37 / 25%);
+      border-radius: 12px;
+      padding: 20px 0;
+      position: absolute;
+      left: 0;
+      top: 50px;
+      pointer-events: auto;
+
+      z-index: 1000;
+
+      transform-origin: left top;
+      
+      .button-auth{
+        color:$white !important;
+      }
+      .tree-main {
+        max-height: 200px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .search {
+        padding: 0 32px 6px 10px;
+        position: relative;
+
+        .mat-icon {
+          position: absolute;
+          top: -3px;
+          svg {
+            width: 15px;
+            height: 15px;
+
+            path {
+              fill: $C_Secondary_black;
+            }
+          }
+        }
+        input {
+          padding-left: 28px;
+        }
+      }
+
+      .selAll {
+        padding: 9px 20px 10px 18px;
+        height: 41px;
+
+        .sel-title {
+          font: 14px/20px ModernEra;
+          color: $C_Secondary_black;
+        }
+
+        .clearAll {
+          @include msg;
+          background: $new_blue_accent; //$White_labing_Yellow;
+          padding: 3px 10px;
+        }
+      }
+
+      .appAll {
+        padding: 12px 20px 20px;
+
+        .button-auth {
+          padding: 9px;
+          font: 600 14px/22px ModernEra;
+          background: $C_Primary_Orange; //$C_menuBack;
+          border: $C_Primary_Orange; //$C_menuBack;
+        }
+      }
+
+      .mat-nested-tree-node {
+        li {
+          padding-left: 5px;
+
+          .mat-tree-node {
+            button {
+              background: transparent;
+              border: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .landuageSel {
+    margin-right: 35px;
+
+    .mat-select {
+      display: inline-block;
+      // width: 108px;
+      // border: 1px solid $C_borderColorLight;
+      border: 1px solid #e8ecee;
+      border-radius: 10px;
+      padding: 8px 16px;
+      font: 16.8px/24px ModernEra;
+      color: $C_Secondary_black;
+      ::ng-deep {
+        .mat-select-trigger {
+          .mat-select-arrow-wrapper {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+
+  .profileSec {
+    display: flex;
+    align-items: center;
+
+    .matSelectDropDown {
+      .mat-select {
+        ::ng-deep {
+          .mat-select-arrow-wrapper {
+            background-image: url("../../../assets/images/menu.svg");
+            height: 43px;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 0px 10px 0px 0px;
+            .mat-select-arrow {
+              color: rgba(0,0,0,.54); //transparent
+            }
+          }
+        }
+      }
+    }
+    .profile {
+      margin-right: 10px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 25px;
+      }
+    }
+  }
+
+  .userDetail {
+    h4 {
+      font: 600 14px/18px ModernEra;
+      color: $new_primary_black; //$white;
+    }
+
+    p {
+      background: $C_Primary_Orange; //$C_Secondary_Blue;
+      border-radius: 43px;
+
+      padding: 4px 30px 4px 0px;
+
+      font:700 13px/18px ModernEra;
+      opacity: 1; //0.6;
+      color: $C_white;
+    }
+  }
+}
+
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.example-tree li {
+  border-bottom: 0.5px solid $C_lightmixblueWhitecolor;
+
+  ul li {
+    border-bottom: 0;
+  }
+}
+
+::ng-deep .landuageSel .mat-select-value {
+  padding-left: 35px !important;
+}
+
+::ng-deep
+  .matSelect
+  .mat-form-field-appearance-outline
+  .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding-bottom: 0;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent {
+  .mat-checkbox-ripple .mat-ripple-element {
+    background-color: $White_labing_Yellow//$C_Primary_Orange !important; //
+  }
+
+  .mat-checkbox-background,
+  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: $C_Primary_Orange; //$White_labing_Yellow;
+  }
+}
+
+::ng-deep .mat-checkbox.mat-accent {
+  .mat-checkbox-ripple .mat-ripple-element {
+    background-color: $C_Primary_Orange !important; //$White_labing_Yellow !important;
+  }
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: $C_Primary_Blue !important;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: 0.7px solid $C_borderColor;
+}
+
+.hide {
+  display: none;
+}
+
+.hiddenCheckbox {
+  padding-left: 18px;
+}
+
+::ng-deep .matSelect .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 5px 20px 5px 0 !important;
+}
+::ng-deep .matSelect .mat-form-field-label-wrapper {
+  top: -1.45em !important;
+}
+::ng-deep
+  .matSelect
+  .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label,
+.mat-form-field-appearance-outline.mat-form-field-can-float
+  .mat-input-server:focus
+  + .mat-form-field-label-wrapper
+  .mat-form-field-label {
+  transform: translateY(-1em) scale(0.75);
+}
+::ng-deep .mat-option-text {
+  font: 600 14px/20px ModernEra !important;
+  color: $Secondary_black !important;
+}
+
+::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  color: $C_lightblack;
+}
+@media (max-width: 910px) {
+  .userDetail {
+    display: none;
+  }
+}

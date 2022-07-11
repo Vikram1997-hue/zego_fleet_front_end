@@ -1,0 +1,329 @@
+@import ".../../../../../../../assets/scss/variables.scss";
+
+
+
+.tripHisTopLeft {
+    @include flex-justify;
+    align-items: center;
+
+    .tripTitle {
+        font: 600 16px/16px ModernEra;
+        color: $Secondary_black;
+    }
+}
+
+.behaviour {
+    @include mainBoxwithBack;
+    margin-bottom: 20px;
+
+    // .behTitle {
+    //     font: 600 16px/16px ModernEra;
+    //     color: $Secondary_black;
+    //     border-bottom: 0.5px solid $lightmixblueWhitecolor;
+    //     padding: 19px 24px 24px;
+    // }
+
+    // .behaviorscore {
+    //     padding: 19px 24px;
+    //     @include flex-start;
+
+    //     .w-49 {
+    //         width: 49%;
+
+    //         &:nth-child(1) {
+    //             margin-right: 2%;
+    //         }
+
+    //         .behaviorBox {
+    //             border-radius: 10px;
+    //             background: rgba(96, 78, 255, 0.08);
+
+    //             &.selValue {
+    //                 padding: 10px 14px;
+    //                 @include flex-justify;
+
+    //                 .valueBox {
+    //                     text-align: center;
+    //                     padding: 8px 29px;
+    //                     border-radius: 7px;
+
+    //                     @media(max-width:1440px) {
+    //                         padding: 8px 20px;
+    //                     }
+
+    //                     &.active {
+    //                         background: #604EFF;
+
+    //                         .values,
+    //                         .type {
+    //                             color: $white;
+    //                         }
+    //                     }
+
+    //                     .values {
+    //                         font: 600 18px/22px ModernEra;
+    //                         color: $Secondary_Dark;
+    //                     }
+
+    //                     .type {
+    //                         font: 500 14px/17px ModernEra;
+    //                         color: $Secondary_Dark;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // .mondata {
+    //     position: relative;
+    //     margin-bottom: 22px;
+    //     max-width: 250px;
+    //     width: 100%;
+
+    //     .calIcon {
+    //         position: absolute;
+    //         left: 11px;
+    //         top: 7px;
+    //     }
+
+    //     .closeIcon {
+    //         position: absolute;
+    //         right: 11px;
+    //         top: 7px;
+    //     }
+
+    //     input {
+    //         border: 1px solid $borderColorLight;
+    //         border-radius: 56px;
+    //         padding: 9px 33px;
+    //     }
+    // }
+}
+
+.vehicleInfo {
+    padding: 20px;
+    @include mainBoxwithBack;
+
+    .vehTitle {
+        font: 600 16px/16px ModernEra;
+        color: $Secondary_black;
+        margin-bottom: 4px;
+    }
+}
+
+.booking-table {
+    th {
+        font: 500 12px/18px ModernEra;
+        color: $white;
+
+        // border-bottom: 2px solid #643fc0;
+
+        // &[data-content="menu"] {
+        //     width: 80px;
+        // }
+    }
+
+    .mat-sort-header-arrow {
+        color: $Secondary_Blue_dark
+    }
+
+    td {
+        &.mat-cell {
+            font: 13px/16px ModernEra;
+            color: $black;
+            max-width: 106px;
+           @include ellipsis;
+           
+        }
+        .driverName{
+          max-width: 100px;
+           @include ellipsis;
+           font: 12px/18px ModernEra !important;
+           color: #001E50 !important;
+         }
+    }
+}
+
+tr.mat-header-row {
+    height: 34px;
+    background: $White_labing_Black;
+    border-radius: 5px;
+    color: $white;
+}
+
+mat-row,
+mat-footer-row,
+td.mat-cell,
+td.mat-footer-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $Secondary_black !important;
+
+}
+
+.date {
+    @include msg;
+    padding: 3px 20px;
+}
+
+mat-row,
+mat-header-row,
+mat-footer-row,
+th.mat-header-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $white !important;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    &:nth-child(odd) {
+        background: $tableOddBack;
+        border-radius: 8px;
+        height: 34px;
+    }
+
+    &:nth-child(even) {
+        background: $white;
+    }
+}
+
+:host {
+    ::ng-deep {
+        .booking-table {
+
+            tr.mat-row,
+            tr.mat-footer-row {
+                height: 34px;
+            }
+        }
+    }
+}
+
+mat-form-field {
+    letter-spacing: .22px;
+    width: 100%;
+}
+
+.medalIcon {
+    img{
+        width: 13px;
+        height: 17px;
+        margin-right: 10px;
+    }
+}
+
+.red {
+    background-color: $danger;
+}
+
+.yellow {
+    background-color: $yellow;
+    color: $nightTextColor;
+}
+
+.orange {
+    background-color: $orange;
+}
+
+.grey {
+    background-color: $dark_gray;
+}
+
+.mat-table {
+    border-collapse: separate;
+    border-spacing: 0 10px !important;
+}
+
+@media (min-width:1020px) and (max-width:1120px) {
+    .mapImg {
+        img {
+            width: 83px;
+        }
+    }
+}
+
+@media (max-width:1019px) {
+    .mapImg {
+        img {
+            width: 64px;
+        }
+    }
+}
+
+@media (min-width:862px) and (max-width:1250px) {
+    .booking-table {
+        th {
+            padding-right: 10px;
+        }
+
+
+    }
+}
+
+@media (min-width:862px) and (max-width:1250px) {
+
+    .filterBody .filterBtn.resetBtn {
+        margin: 0 10px !important;
+    }
+}
+
+::ng-deep .mat-button-toggle-button {
+    svg {
+        path {
+            fill: #c5cdd4;
+        }
+    }
+}
+
+::ng-deep .mat-button-toggle-checked {
+    background-color: $Primary_Blue;
+
+    svg {
+        path {
+            fill: $white !important;
+        }
+    }
+}
+
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 35px;
+}
+
+:host ::ng-deep .alignment {
+    .mat-header-row .mat-sort-header-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    table.mat-table{
+        text-align: center;
+    }
+
+    td.mat-cell,
+    th.mat-header-cell {
+        text-align: center;
+        justify-content: center;
+
+        &:nth-child(1) {
+            text-align: left;
+            justify-content: left;
+        }
+    }
+}
+
+.alignment {
+    .header-align-left {
+        display: flex;
+        justify-content: left !important;
+        align-items: center;
+        height: 34px;
+        padding-left: 24px;
+    }
+}
+::ng-deep{
+    .goal-setting{
+        width: 100%;
+    }
+}

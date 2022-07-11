@@ -1,0 +1,119 @@
+// @import "../../../assets/scss/variables.scss";
+@import"../../../assets/scss/common_variables.scss";
+@import"../../../assets/scss/variables.scss";
+
+// .mat-drawer-container{
+//     min-height: 100vh;
+// }.
+.sidebar {
+    .logoSec {
+        background-color: $C_Primary_Orange;
+        padding: 29.5px 40px 14.5px 24px;
+        text-align: center;
+        img{
+            // max-width: 110px;
+        }
+    }
+    mat-expansion-panel{
+        background: transparent;
+        
+    }
+    ::ng-deep{
+        .mat-expansion-panel-header {
+            font: 700 14px/18px ModernEra;
+            color: $new_primary_black; //$white;
+        }
+    }
+
+    .sideMenu {
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+        padding-top: 20px;
+        background: $new_sidebar_bg_color; //$White_labing_Yellow;
+    }
+
+    .subMenu {
+        list-style: none;
+        padding-left: 0;
+
+        
+        li {
+            font: 400 13px/18px ModernEra !important;
+            //opacity: 0.8;
+            color: $new_primary_black; //$white;
+            padding: 10px 24px;
+            margin-bottom: 6px;
+            align-items: center;
+            display: flex;
+            align-items: center;
+            &.mainMenu{
+                font: 700 14px/18px ModernEra_Bold !important; 
+                opacity: 1 !important;
+            }
+            &.sumenuMain {
+                // font: 700 14px/18px ModernEra !important;
+                font: 400 13px/18px ModernEra;
+
+                color: $new_primary_black; //$white;
+                &.active {
+                    background: $new_sidebar_active; //$color_violet;
+                    padding: 14px 24px 14px 20px;
+                    color: $white;
+        
+                    svg {
+                        margin-right: 10px;
+                        opacity: 0.8;
+                        path {
+                            fill: $C_Primary_Blue;
+                        }
+                    }
+                }
+            }
+
+            svg {
+                float: left;
+                margin-right: 11px;
+                width: 20px;
+                height: 20px;
+
+                path {
+                    fill: $new_primary_black; //$white;
+                }
+            }
+            span {
+                width: calc(100% - 31px);
+            }
+
+            &.active {
+                background: $new_sidebar_active; //$color_violet;
+                // border-left: 4px solid $C_Primary_Blue;
+                // padding: 10px 24px 10px 20px;
+                color: $C_white; //$new_primary_black;
+                opacity: 1;
+                font: 700 13px/18px ModernEra_Bold !important;
+
+                svg {
+                    margin-right: 10px;
+                    opacity: 1;
+                    path {
+                        fill: $C_white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mat-expansion-panel {
+    font-size: 20px;
+}
+
+
+
+::ng-deep .mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+}
+
+::ng-deep .sideMenu .mat-expansion-panel-header.mat-expanded {
+    height: 46px !important;
+}

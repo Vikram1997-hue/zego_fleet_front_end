@@ -1,0 +1,77 @@
+<div class="mainFilter">
+  <div class="filterHeader">
+    Weightage settings
+      <div>
+           <button class="btn btnFilterExport enable-click-event"><img
+                  src="assets/images/export.svg"></button>
+      </div>
+  </div>
+</div>
+
+<div class="vehicleInfo">
+      <h3 class="vehTitle">Weightage settings</h3>
+  
+    <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100 booking-table">
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="trigger">
+          <th mat-header-cell *matHeaderCellDef> Trigger event </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="time">
+          <th mat-header-cell *matHeaderCellDef> Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weightage">
+          <th mat-header-cell *matHeaderCellDef> Weightage </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+          <!-- Speed range  Column -->
+          <ng-container matColumnDef="speed">
+            <th mat-header-cell *matHeaderCellDef> Speed range </th>
+            <td mat-cell *matCellDef="let element">  </td>
+          </ng-container>
+
+                    <!-- Road factor Column -->
+                    <ng-container matColumnDef="road">
+                      <th mat-header-cell *matHeaderCellDef> Road factor</th>
+                      <td mat-cell *matCellDef="let element">  </td>
+                    </ng-container>
+
+                          <!-- Vehicle category Column -->
+                          <ng-container matColumnDef="vehicle">
+                            <th mat-header-cell *matHeaderCellDef> Vehicle category</th>
+                            <td mat-cell *matCellDef="let element">  </td>
+                          </ng-container>
+
+                             <!-- Vehicle category Column -->
+                             <ng-container matColumnDef="daynight">
+                              <th mat-header-cell *matHeaderCellDef> Day/Night</th>
+                              <td mat-cell *matCellDef="let element">  </td>
+                            </ng-container>
+
+                               <!-- Vehicle category Column -->
+                          <ng-container matColumnDef="weather">
+                            <th mat-header-cell *matHeaderCellDef> Weather</th>
+                            <td mat-cell *matCellDef="let element">  </td>
+                          </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element"> <span class="date success">Mark as Inactive</span>
+            <span class="edit cursor"><img src="assets/images/edit.png"></span>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,43 @@
+<div class="exceptionSettingBlock">
+    <div class="heading">
+        <h4 class="text-center">Set Custom Goal for this driver</h4>
+        <button class="close-button" (click)="CloseDialog()">
+            x
+        </button>
+    </div>
+
+    <div class="mainGraphBlock">
+        <div class="slider" *ngFor="let item of list; let i = index">
+            <div class="slider__section">
+                <div class="slider__section__main-content d-flex justify-content-center">
+                    <div class="position-relative">
+                        <span class="firstValue">10</span>
+                        <span class="secondValue"> 8 </span>
+                        <span class="thirdValue"> 6 </span>
+                        <span class="fourthValue">4</span>
+                        <span class="fifthValue">2</span>
+                        <mat-slider class="example-margin" vertical min="1" max="10" step="1" [value]="item?.value" (input)="changeValue($event,i)"></mat-slider>
+                    </div>
+                </div>
+                <div class="px-3 d-flex justify-content-center">
+                    <div class="slider__section__description text-center position-relative">
+                        <div class="descName" [innerHTML]="item?.name">
+
+                        </div>
+                        <button class="position-absolute" mat-raised-button [matTooltip]="item?.message"
+                        matTooltipPosition="above"
+                            aria-label="Button that displays a tooltip when focused or hovered over">
+                             <img  src="/assets/images/caution_sign.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <div class="BtnBlock">
+        <button class="btn btnSave" (click)="updateValue()">Save</button>
+        <button class="btn reset" (click)="setToDefault()">Reset to Hello Mobility standards</button>
+    </div>
+</div>

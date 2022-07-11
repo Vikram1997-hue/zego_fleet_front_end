@@ -1,0 +1,135 @@
+@import "../../../../assets/scss/variables.scss";
+
+.filterBody .filterBtn.cancleBtn,
+.filterBtn.applyBtn {
+    padding: 13px 35px;
+}
+
+.cancleBtn {
+    margin: 0 10px 0 0;
+}
+
+
+.userIdRole {
+    font: 300 14px/17px ModernEra_Bold;
+    color: $C_Primary_Orange; //$White_labing_Yellow;
+    margin-bottom: 0;
+}
+
+
+.commonPadding {
+    padding: 0 36px;
+
+    @media(max-width:1200px) {
+        padding: 0 20px;
+    }
+}
+.buttonSize{
+    font: 700 14px/17px ModernEra_Bold;
+}
+
+.manageProfile {
+    max-width: 984px;
+    width: 100%;
+    background: $white;
+    box-shadow: 0px 25px 75px rgba(87, 84, 160, 0.15);
+    border-radius: 8px;
+    padding: 16px 0;
+
+    .profileTopSec {
+        @include flex-justify;
+        align-items: center;
+
+        .profilePicName {
+            @include flex-start;
+            align-items: center;
+
+            @media(max-width: 1200px) {
+                margin-bottom: 10px;
+            }
+        }
+
+        .filterBody {
+            @include flex-start;
+            align-items: center;
+            box-shadow: none;
+            border-radius: none;
+            padding: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .perInfoBox {
+        border-top: 1px solid #E0E3E7;
+        padding-top: 20px;
+
+        .personalInfoTitle {
+            font: 700 14px/17px ModernEra_Bold;
+            color: $tooltipsTextColor;
+        }
+    }
+
+    .profileBox {
+        @include flex-start;
+
+
+        padding: 20px 32px 0;
+
+        .pointer {
+            cursor: not-allowed;
+        }
+
+        .fields {
+            flex-basis: calc(50% - 18px);
+            max-width: calc(50% - 18px);
+
+            &:nth-child(odd) {
+                margin-right: 18px;
+            }
+
+            &:nth-child(even) {
+                margin-left: 18px;
+            }
+        }
+    }
+
+    .profileImgBox {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin-right: 24px;
+
+        .profileImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 50%;
+        }
+
+        .cam-img {
+            position: absolute;
+            right: 0;
+            bottom: -9px;
+            cursor: pointer;
+            .camIcon {
+                width: 30px;
+                height: 30px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+::ng-deep .update_profile {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #F44336 !important;
+    padding: 14px 6px !important;
+}
+
+disabled {
+    color: red !important;
+}
+
+::ng-deep .disabled-input {
+    color: #001E5055;
+}

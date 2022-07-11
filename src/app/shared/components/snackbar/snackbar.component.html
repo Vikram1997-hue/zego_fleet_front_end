@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-between main-snack">
+    <div class="data">
+        <img *ngIf="data?.image" src="/assets/images/snackbar.png" alt="">
+        <span>{{data?.message}}</span>
+    </div>
+    <div class="dismiss">
+      <button mat-icon-button (click)="snackBarRef.dismiss()">
+          <mat-icon>close</mat-icon>
+        </button>
+    </div>
+  </div>

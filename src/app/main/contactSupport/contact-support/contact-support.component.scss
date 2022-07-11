@@ -1,0 +1,114 @@
+@import "../../../../assets/scss/variables.scss";
+
+.filterBody {
+  .editTitle {
+    font: 600 18px/24px ModernEra_Bold;
+    color: $Secondary_black;
+    margin-bottom: 20px;
+  }
+  .editRule {
+    @include flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+    .editRuleTitle {
+      color: $Secondary_black;
+      font: 600 16px/16px ModernEra;
+      margin-bottom: 0;
+      width: 228px;
+    }
+    .editRuleTitleBack {
+      font: 600 16px/16px ModernEra;
+      color: #0064ff;
+      margin-bottom: 0;
+      padding: 20px 30px;
+      background: #f9fafb;
+      border-radius: 8px;
+      width: calc(100% - 228px);
+    }
+  }
+}
+.BtnBlock {
+  text-align: center;
+  padding: 0px;
+  
+.btnSave-block{
+    padding-top: 24px;
+}
+  .btnSave {
+    padding: 15px 80px;
+    background: $C_Primary_Orange; //$White_labing_Yellow;
+    border-radius: 100px;
+    margin: 0 14px;
+    font: 700 16px/22px ModernEra_Bold;
+    color: $white;
+  }
+  .image-upload {
+    display: inline-block;
+    position: relative;
+    svg {
+      position: absolute;
+      right: 5%;
+      bottom: 7%;
+    }
+    img{
+        object-fit: cover;
+        object-position: center;
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 12px;
+        height: 100%;
+    }
+  }
+}
+
+.profileBox {
+  .fields {
+    &.fileld33 {
+      margin: 0 15px 0 0;
+      &:nth-child(3n + 3) {
+        margin-right: 0;
+      }
+    }
+  }
+  .feedback-section{
+      position: relative;
+      ::ng-deep{
+          input{
+              height: 100px;
+          }
+          .mat-form-field-subscript-wrapper{
+            top: 71%;
+          }
+      }
+      
+  }
+}
+.uploadFileBox{
+.upload {
+  border: 1px solid #c5cdd4;
+  border-radius: 12px;
+  .uploadTitle{
+  font: 500 16px/22px ModernEra;
+  color: $borderColor;
+  }
+  .maxSizeMsg{
+    font: 600 9px/24px ModernEra;
+    color: $redColor;
+  }    
+}
+}
+::ng-deep .contact_support{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #F44336 !important;
+    padding: 14px 6px  !important;
+}
+
+input:read-only{
+  // background-color: #F4F6F8 !important;
+  cursor: not-allowed;
+}
+
+.text-count {
+  position:relative;
+  bottom: 0;
+  right:0;
+  }

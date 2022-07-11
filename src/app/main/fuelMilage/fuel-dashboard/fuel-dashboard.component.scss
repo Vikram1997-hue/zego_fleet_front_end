@@ -1,0 +1,150 @@
+@import "../../../../assets/scss/variables.scss";
+
+.vehicleInfo {
+    padding: 20px;
+    @include mainBoxwithBack;
+
+    .vehTitle {
+        font: 600 18px/25px ModernEra;
+        color: $Secondary_black;
+        margin-bottom: 5px;
+        margin-right: 16px;
+    }
+}
+
+.valueFuel {
+    color: $white;
+    margin-bottom: 5px;
+    font: 800 24px/24px ModernEra;
+
+    @media(max-width:1440px) {
+        font: 800 20px/20px ModernEra;
+    }
+}
+
+.booking-table {
+    th {
+        font: 500 12px/18px ModernEra;
+        color: $white;
+        padding-right:30px;
+    }
+
+    .mat-sort-header-arrow {
+        color: $Secondary_Blue_dark;
+    }
+
+    td {
+        &.mat-cell {
+            font: 13px/16px ModernEra;
+            color: $black;
+            max-width: 106px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+tr.mat-header-row {
+    height: 34px;
+    background: $White_labing_Black;
+    border-radius: 5px;
+    color: $white;
+}
+
+mat-row,
+mat-footer-row,
+td.mat-cell,
+td.mat-footer-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $Secondary_black !important;
+
+}
+
+.date {
+    margin-right: 20px;
+    @include msg;
+}
+
+mat-row,
+mat-header-row,
+mat-footer-row,
+th.mat-header-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $white !important;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    &:nth-child(odd) {
+        background: $tableOddBack;
+        border-radius: 8px;
+        height: 34px;
+    }
+
+    &:nth-child(even) {
+        background: $white;
+    }
+}
+
+:host {
+    ::ng-deep {
+        .booking-table {
+
+            tr.mat-row,
+            tr.mat-footer-row {
+                height: 34px;
+            }
+        }
+    }
+}
+
+mat-form-field {
+    letter-spacing: .22px;
+    width: 100%;
+}
+
+.mat-table {
+    border-collapse: separate;
+    border-spacing: 0 10px !important;
+}
+
+.evToggle{
+    .mat-slide-toggle{
+       margin: 0 18px;
+    }
+    span{
+        font: 600 14px/18px ModernEra !important;
+        color: $borderColor;
+        &.active{
+            color: $Primary_Blue;
+        }
+    }
+}
+
+::ng-deep {
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+        background-color: rgb(18 103 250 / 65%);
+    }
+
+    .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+        background-color: $Primary_Blue;
+    }
+}
+
+@media (min-width:1020px) and (max-width:1120px) {
+    .mapImg{
+      img{
+        width: 83px;
+      }
+    }
+  }
+  @media  (max-width:1019px) {
+    .mapImg{
+      img{
+        width: 64px;
+      }
+    }
+  }

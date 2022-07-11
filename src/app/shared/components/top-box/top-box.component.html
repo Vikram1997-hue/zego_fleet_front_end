@@ -1,0 +1,732 @@
+<div class="dashboardBoxWithFilter" >
+    <div class="dashboardBox" *ngIf="totalBoxes != 0">
+        <div class="box safeDriving" [ngStyle]="{'flex-basis': 'calc(' + 100/totalBoxes + '% - 14px)', 'max-width': 'calc(' + 100/totalBoxes + '% - 14px)'}" *ngIf="!isLoadingshimmer && (dashBoardData?.safe_score > compareBoxes)">
+            <p class="title"> {{"safeDrivingScore" | translate}}</p>
+            <div class="valueSec">
+                <h4 class="value">{{service.convertToDutch(dashBoardData?.safe_score) || '0'}}</h4>
+                <!-- <span class="valueRight success"><img src="assets/images/arrowdown.png"> 5,9%</span> -->
+                <ng-container *ngIf="dashBoardData.safeScoreChange < 0; else elseTemplate11">
+                    <span class="valueRight danger"><img src="assets/images/arrowdown.png">{{service.convertToDutch(dashBoardData?.safeScoreChange)
+                        || '0'}}%</span>
+                </ng-container>
+                <ng-template #elseTemplate11>
+                    <span class="valueRight success"><img src="assets/images/arrowup.png" *ngIf="dashBoardData.safeScoreChange > 0">{{service.convertToDutch(dashBoardData?.safeScoreChange) ||
+                        '0'}}%</span>
+                </ng-template>
+  
+            </div>
+            <div class="infoCircle">
+                <svg [matTooltip]='eyeIconMessage.fleetScore'
+                    matTooltipPosition="below" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 16.5C13.1325 16.5 16.5 13.1325 16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 13.1325 4.8675 16.5 9 16.5ZM9.5625 12C9.5625 12.3075 9.3075 12.5625 9 12.5625C8.6925 12.5625 8.4375 12.3075 8.4375 12L8.4375 8.25C8.4375 7.9425 8.6925 7.6875 9 7.6875C9.3075 7.6875 9.5625 7.9425 9.5625 8.25L9.5625 12ZM8.31 5.715C8.3475 5.6175 8.4 5.5425 8.4675 5.4675C8.5425 5.4 8.625 5.3475 8.715 5.31C8.805 5.2725 8.9025 5.25 9 5.25C9.0975 5.25 9.195 5.2725 9.285 5.31C9.375 5.3475 9.4575 5.4 9.5325 5.4675C9.6 5.5425 9.6525 5.6175 9.69 5.715C9.7275 5.805 9.75 5.9025 9.75 6C9.75 6.0975 9.7275 6.195 9.69 6.285C9.6525 6.375 9.6 6.4575 9.5325 6.5325C9.4575 6.6 9.375 6.6525 9.285 6.69C9.105 6.765 8.895 6.765 8.715 6.69C8.625 6.6525 8.5425 6.6 8.4675 6.5325C8.4 6.4575 8.3475 6.375 8.31 6.285C8.2725 6.195 8.25 6.0975 8.25 6C8.25 5.9025 8.2725 5.805 8.31 5.715Z"
+                        fill="white" />
+                </svg>
+            </div>
+            <!-- <div class="infoCircle" triggers="click" [autoClose]="true" placement="top" container="body"
+                ngbTooltip="Click anywhere or press Escape to close (try the toggling element too)"
+                #tooltip3="ngbTooltip">
+                <svg mat-raised-button
+                    matTooltip="Some detailed text information explaining about the particular section or feature"
+                    matTooltipPosition="below" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 16.5C13.1325 16.5 16.5 13.1325 16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 13.1325 4.8675 16.5 9 16.5ZM9.5625 12C9.5625 12.3075 9.3075 12.5625 9 12.5625C8.6925 12.5625 8.4375 12.3075 8.4375 12L8.4375 8.25C8.4375 7.9425 8.6925 7.6875 9 7.6875C9.3075 7.6875 9.5625 7.9425 9.5625 8.25L9.5625 12ZM8.31 5.715C8.3475 5.6175 8.4 5.5425 8.4675 5.4675C8.5425 5.4 8.625 5.3475 8.715 5.31C8.805 5.2725 8.9025 5.25 9 5.25C9.0975 5.25 9.195 5.2725 9.285 5.31C9.375 5.3475 9.4575 5.4 9.5325 5.4675C9.6 5.5425 9.6525 5.6175 9.69 5.715C9.7275 5.805 9.75 5.9025 9.75 6C9.75 6.0975 9.7275 6.195 9.69 6.285C9.6525 6.375 9.6 6.4575 9.5325 6.5325C9.4575 6.6 9.375 6.6525 9.285 6.69C9.105 6.765 8.895 6.765 8.715 6.69C8.625 6.6525 8.5425 6.6 8.4675 6.5325C8.4 6.4575 8.3475 6.375 8.31 6.285C8.2725 6.195 8.25 6.0975 8.25 6C8.25 5.9025 8.2725 5.805 8.31 5.715Z"
+                        fill="white" />
+                </svg>
+  
+            </div> -->
+  
+        </div>
+        <ngx-shimmer-loading *ngIf="isLoadingshimmer"  [shape]="'square'" [width]="'100%'" ></ngx-shimmer-loading>
+        <div class="box trips" [ngStyle]="{'flex-basis': 'calc(' + 100/totalBoxes + '% - 14px)', 'max-width': 'calc(' + 100/totalBoxes + '% - 14px)'}" *ngIf="!isLoadingshimmer && (dashBoardData?.total_trips > compareBoxes)">
+            <p class="title">{{"sidebar.trip" | translate}}</p>
+            <div class="valueSec">
+                <h4 class="value">{{service.convertToDutch(dashBoardData?.total_trips)}}</h4>
+                <!-- <span class="valueRight success"><img src="assets/images/arrowup.png"> 5,9%</span> -->
+                <ng-container *ngIf="dashBoardData.tripChange < 0; else elseTemplate13">
+                    <span class="valueRight danger"><img src="assets/images/arrowdown.png">{{service.convertToDutch(dashBoardData?.tripChange) ||
+                        '0'}}%</span>
+                </ng-container>
+                <ng-template #elseTemplate13>
+                    <span class="valueRight success"><img src="assets/images/arrowup.png" *ngIf="dashBoardData.tripChange > 0">{{service.convertToDutch(dashBoardData?.tripChange) ||
+                        '0'}}%</span>
+                </ng-template>
+            </div>
+            <div class="infoCircle">
+                <svg [matTooltip]="eyeIconMessage.trips"
+                    matTooltipPosition="below" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 16.5C13.1325 16.5 16.5 13.1325 16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 13.1325 4.8675 16.5 9 16.5ZM9.5625 12C9.5625 12.3075 9.3075 12.5625 9 12.5625C8.6925 12.5625 8.4375 12.3075 8.4375 12L8.4375 8.25C8.4375 7.9425 8.6925 7.6875 9 7.6875C9.3075 7.6875 9.5625 7.9425 9.5625 8.25L9.5625 12ZM8.31 5.715C8.3475 5.6175 8.4 5.5425 8.4675 5.4675C8.5425 5.4 8.625 5.3475 8.715 5.31C8.805 5.2725 8.9025 5.25 9 5.25C9.0975 5.25 9.195 5.2725 9.285 5.31C9.375 5.3475 9.4575 5.4 9.5325 5.4675C9.6 5.5425 9.6525 5.6175 9.69 5.715C9.7275 5.805 9.75 5.9025 9.75 6C9.75 6.0975 9.7275 6.195 9.69 6.285C9.6525 6.375 9.6 6.4575 9.5325 6.5325C9.4575 6.6 9.375 6.6525 9.285 6.69C9.105 6.765 8.895 6.765 8.715 6.69C8.625 6.6525 8.5425 6.6 8.4675 6.5325C8.4 6.4575 8.3475 6.375 8.31 6.285C8.2725 6.195 8.25 6.0975 8.25 6C8.25 5.9025 8.2725 5.805 8.31 5.715Z"
+                        fill="white" />
+                </svg>
+            </div>
+        </div>
+        <ngx-shimmer-loading  *ngIf="isLoadingshimmer"  [shape]="'square'" [width]="'100%'" ></ngx-shimmer-loading>
+        <div class="box kiloMeter" [ngStyle]="{'flex-basis': 'calc(' + 100/totalBoxes + '% - 14px)', 'max-width': 'calc(' + 100/totalBoxes + '% - 14px)'}" *ngIf="!isLoadingshimmer && (dashBoardData?.total_distance > compareBoxes) ">
+            <p class="title"> Kilometers</p>
+            <div class="valueSec">
+                <h4 class="value">{{service.convertToDutch(service.formatToCeil(dashBoardData?.total_distance)) || '0'}}
+                </h4>
+                <ng-container *ngIf="dashBoardData.distanceChange < 0; else elseTemplate21">
+                    <span class="valueRight danger"><img src="assets/images/arrowdown.png">{{service.convertToDutch(dashBoardData?.distanceChange)
+                        || '0'}}%</span>
+                </ng-container>
+                <ng-template #elseTemplate21>
+                    <span class="valueRight success"><img src="assets/images/arrowup.png" *ngIf="dashBoardData.distanceChange > 0">{{service.convertToDutch(dashBoardData?.distanceChange) ||
+                        '0'}}%</span>
+                </ng-template>
+            </div>
+            <div class="infoCircle">
+                <svg [matTooltip]="eyeIconMessage.kilometers"
+                    matTooltipPosition="below" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 16.5C13.1325 16.5 16.5 13.1325 16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 13.1325 4.8675 16.5 9 16.5ZM9.5625 12C9.5625 12.3075 9.3075 12.5625 9 12.5625C8.6925 12.5625 8.4375 12.3075 8.4375 12L8.4375 8.25C8.4375 7.9425 8.6925 7.6875 9 7.6875C9.3075 7.6875 9.5625 7.9425 9.5625 8.25L9.5625 12ZM8.31 5.715C8.3475 5.6175 8.4 5.5425 8.4675 5.4675C8.5425 5.4 8.625 5.3475 8.715 5.31C8.805 5.2725 8.9025 5.25 9 5.25C9.0975 5.25 9.195 5.2725 9.285 5.31C9.375 5.3475 9.4575 5.4 9.5325 5.4675C9.6 5.5425 9.6525 5.6175 9.69 5.715C9.7275 5.805 9.75 5.9025 9.75 6C9.75 6.0975 9.7275 6.195 9.69 6.285C9.6525 6.375 9.6 6.4575 9.5325 6.5325C9.4575 6.6 9.375 6.6525 9.285 6.69C9.105 6.765 8.895 6.765 8.715 6.69C8.625 6.6525 8.5425 6.6 8.4675 6.5325C8.4 6.4575 8.3475 6.375 8.31 6.285C8.2725 6.195 8.25 6.0975 8.25 6C8.25 5.9025 8.2725 5.805 8.31 5.715Z"
+                        fill="white" />
+                </svg>
+            </div>
+        </div>
+        <ngx-shimmer-loading  *ngIf="isLoadingshimmer"  [shape]="'square'" [width]="'100%'" ></ngx-shimmer-loading>
+        <div class="box vehicles" [ngStyle]="{'flex-basis': 'calc(' + 100/totalBoxes + '% - 14px)', 'max-width': 'calc(' + 100/totalBoxes + '% - 14px)'}" *ngIf="!isLoadingshimmer && (dashBoardData?.total_vehicles > compareBoxes)">
+            <p class="title"> {{"v.vehicle" | translate}}</p>
+            <div class="valueSec">
+                <h4 class="value">{{service.convertToDutch(dashBoardData?.total_vehicles)}}</h4>
+                <!-- <span class="valueRight danger"><img src="assets/images/arrowdown.png"> 5,9%</span> -->
+                <ng-container *ngIf="dashBoardData.vehicleChange < 0; else elseTemplate14">
+                    <span class="valueRight danger"><img src="assets/images/arrowdown.png">{{service.convertToDutch(dashBoardData?.vehicleChange) ||
+                        '0'}}%</span>
+                </ng-container>
+                <ng-template #elseTemplate14>
+                    <span class="valueRight success"><img src="assets/images/arrowup.png"  *ngIf="dashBoardData.vehicleChange > 0">{{service.convertToDutch(dashBoardData?.vehicleChange) ||
+                        '0'}}%</span>
+                </ng-template>
+            </div>
+            <div class="infoCircle">
+                <svg [matTooltip]="eyeIconMessage.vehicles"
+                    matTooltipPosition="below" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 16.5C13.1325 16.5 16.5 13.1325 16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 13.1325 4.8675 16.5 9 16.5ZM9.5625 12C9.5625 12.3075 9.3075 12.5625 9 12.5625C8.6925 12.5625 8.4375 12.3075 8.4375 12L8.4375 8.25C8.4375 7.9425 8.6925 7.6875 9 7.6875C9.3075 7.6875 9.5625 7.9425 9.5625 8.25L9.5625 12ZM8.31 5.715C8.3475 5.6175 8.4 5.5425 8.4675 5.4675C8.5425 5.4 8.625 5.3475 8.715 5.31C8.805 5.2725 8.9025 5.25 9 5.25C9.0975 5.25 9.195 5.2725 9.285 5.31C9.375 5.3475 9.4575 5.4 9.5325 5.4675C9.6 5.5425 9.6525 5.6175 9.69 5.715C9.7275 5.805 9.75 5.9025 9.75 6C9.75 6.0975 9.7275 6.195 9.69 6.285C9.6525 6.375 9.6 6.4575 9.5325 6.5325C9.4575 6.6 9.375 6.6525 9.285 6.69C9.105 6.765 8.895 6.765 8.715 6.69C8.625 6.6525 8.5425 6.6 8.4675 6.5325C8.4 6.4575 8.3475 6.375 8.31 6.285C8.2725 6.195 8.25 6.0975 8.25 6C8.25 5.9025 8.2725 5.805 8.31 5.715Z"
+                        fill="white" />
+                </svg>
+            </div>
+        </div>
+        <ngx-shimmer-loading  *ngIf="isLoadingshimmer"  [shape]="'square'" [width]="'100%'" ></ngx-shimmer-loading>
+        <div class="box kiloMeter" [ngStyle]="{'flex-basis': 'calc(' + 100/totalBoxes + '% - 14px)', 'max-width': 'calc(' + 100/totalBoxes + '% - 14px)'}" *ngIf="!isLoadingshimmer && (dashBoardData?.exception > compareBoxes)">
+            <p class="title"> {{"harshEvent" | translate}}</p>
+            <div class="valueSec">
+                <h4 class="value">{{service.convertToDutch(dashBoardData?.exception || '0')}}</h4>
+                <!-- <span class="valueRight danger"><img src="assets/images/arrowdown.png"> 5,9%</span> -->
+                <ng-container *ngIf="dashBoardData.exceptionChange < 0; else elseTemplate12">
+                    <span class="valueRight danger"><img src="assets/images/arrowdown.png">{{service.convertToDutch(dashBoardData?.exceptionChange) ||
+                        '0'}}%</span>
+                </ng-container>
+                <ng-template #elseTemplate12>
+                    <span class="valueRight success"><img src="assets/images/arrowup.png" *ngIf="dashBoardData.exceptionChange > 0">{{service.convertToDutch(dashBoardData?.exceptionChange) ||
+                        '0'}}%</span>
+                </ng-template>
+            </div>
+            <div class="infoCircle">
+                <svg [matTooltip]="eyeIconMessage.harshevent"
+                    matTooltipPosition="below" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9 16.5C13.1325 16.5 16.5 13.1325 16.5 9C16.5 4.8675 13.1325 1.5 9 1.5C4.8675 1.5 1.5 4.8675 1.5 9C1.5 13.1325 4.8675 16.5 9 16.5ZM9.5625 12C9.5625 12.3075 9.3075 12.5625 9 12.5625C8.6925 12.5625 8.4375 12.3075 8.4375 12L8.4375 8.25C8.4375 7.9425 8.6925 7.6875 9 7.6875C9.3075 7.6875 9.5625 7.9425 9.5625 8.25L9.5625 12ZM8.31 5.715C8.3475 5.6175 8.4 5.5425 8.4675 5.4675C8.5425 5.4 8.625 5.3475 8.715 5.31C8.805 5.2725 8.9025 5.25 9 5.25C9.0975 5.25 9.195 5.2725 9.285 5.31C9.375 5.3475 9.4575 5.4 9.5325 5.4675C9.6 5.5425 9.6525 5.6175 9.69 5.715C9.7275 5.805 9.75 5.9025 9.75 6C9.75 6.0975 9.7275 6.195 9.69 6.285C9.6525 6.375 9.6 6.4575 9.5325 6.5325C9.4575 6.6 9.375 6.6525 9.285 6.69C9.105 6.765 8.895 6.765 8.715 6.69C8.625 6.6525 8.5425 6.6 8.4675 6.5325C8.4 6.4575 8.3475 6.375 8.31 6.285C8.2725 6.195 8.25 6.0975 8.25 6C8.25 5.9025 8.2725 5.805 8.31 5.715Z"
+                        fill="white" />
+                </svg>
+            </div>
+        </div>
+        <ngx-shimmer-loading  *ngIf="isLoadingshimmer"  [shape]="'square'" [width]="'100%'" ></ngx-shimmer-loading>
+    </div>
+    <div class="dashboardBox" *ngIf="totalBoxes == 0" >
+        <div class="d-flex w-100 justify-content-center align-items-center">
+            <img class="cursor" (click)="updatePageData()" src="../../../../assets/images/zego/refresh (1).png" alt="">
+        </div>
+    </div>
+    <div class="filterBtnBackGray cursor" (click)="changeState()" [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 22V11" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M19 7V2" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M12 22V17" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M12 13V2" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M5 22V11" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M5 7V2" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M3 11H7" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M17 11H21" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M10 13H14" stroke="#001E50" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </div>
+  </div>
+
+
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="filterBody" *ngIf="showFilter==0">
+      <div class="filterBodyTitle">
+        <div class="d-flex flex-wrap align-items-center">
+          <h4 class="mr-2">Filters</h4>
+          <div class="mb-3">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2ZM8.64 12.81L13.02 8.43H10.59C10.18 8.43 9.84 8.09 9.84 7.68C9.84 7.27 10.18 6.93 10.59 6.93H14.83C14.93 6.93 15.02 6.95 15.12 6.99C15.3 7.07 15.45 7.21 15.53 7.4C15.57 7.49 15.59 7.59 15.59 7.69V11.93C15.59 12.34 15.25 12.68 14.84 12.68C14.43 12.68 14.09 12.34 14.09 11.93V9.5L9.7 13.87C9.55 14.02 9.36 14.09 9.17 14.09C8.98 14.09 8.79 14.02 8.64 13.87C8.35 13.58 8.35 13.1 8.64 12.81ZM18.24 17.22C16.23 17.89 14.12 18.23 12 18.23C9.88 18.23 7.77 17.89 5.76 17.22C5.37 17.09 5.16 16.66 5.29 16.27C5.42 15.88 5.84 15.66 6.24 15.8C9.96 17.04 14.05 17.04 17.77 15.8C18.16 15.67 18.59 15.88 18.72 16.27C18.84 16.67 18.63 17.09 18.24 17.22Z"
+                fill="#C5CDD4"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+  
+      <div class="profileBox">
+        <mat-form-field
+          class="ngx-daterangepicker-action-left fields fileld50"
+          appearance="outline"
+        >
+          <mat-label>{{ "selectRange" | translate }}</mat-label>
+          <input
+            matInput
+            ngxDaterangepickerMd
+            [(ngModel)]="selectedShow"
+            [showCustomRangeLabel]="true"
+            [alwaysShowCalendars]="alwaysShowCalendars"
+            [ranges]="ranges"
+            [showClearButton]="false"
+            [showCancel]="true"
+            [linkedCalendars]="true"
+            [isTooltipDate]="isTooltipDate"
+            [isInvalidDate]="isInvalidDate"
+            [locale]="{ customRangeLabel: customeRange,applyLabel:setDate ,cancelLabel:cancelDate, daysOfWeek:dayWeek, monthNames:month}"
+            (rangeClicked)="rangeClicked($event)"
+            (datesUpdated)="datesUpdated($event)"
+            [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
+            [showRangeLabelOnInput]="showRangeLabelOnInput"
+            [maxDate]='maxDate'
+            readonly
+          />
+          <span class="calIconRight"
+            ><img src="assets/images/calendar.svg"
+          /></span>
+        </mat-form-field>
+        <div class="fields fileld50">
+          <div class="d-flex justify-content-end">
+            <div>
+              <button
+                (click)="resetToLastStateDashboard(); resetFilter()"
+                mat-button
+                class="filterBtn resetBtn"
+              >
+              {{ "filterreset" | translate }}
+              </button>
+            </div>
+            <div>
+              <button
+                (click)="filterApply()"
+                mat-button
+                class="filterBtn applyBtn"
+              >
+                {{ "apply" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- vehicle filter -->
+    <div class="filterBody" *ngIf="showFilter==1">
+        <div class="filterBodyTitle">
+            <h4>Filters</h4>
+            <span (click)="changeState()"><img src="assets/images/close-circle.svg"></span>
+        </div>
+  
+        <div class="profileBox">
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>{{"v.vehicleCategory" | translate}}</mat-label>
+                <mat-select [(ngModel)]="selectedVehicleCategory" [ngModelOptions]="{standalone: true}"
+                    [disableOptionCentering]="true" panelClass="customSelect"
+                    placeholder='{{"v.vehicleCategory" | translate}}'>
+                    <div class="searchSelect border-bottom">
+                        <input class='searchDropdown' type="text" placeholder="{{'search' | translate}}"
+                            [(ngModel)]="searchCategory">
+                        <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                                    fill="#848588" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                                    fill="#848588" />
+                            </svg>
+                        </mat-icon>
+                    </div>
+                    <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                    <mat-option [value]="item?.id "
+                        *ngFor="let item of vehicleCategoryData | filter: searchCategory : 'vehicleCategory'">
+                        {{item?.name || "NA"}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="fields fileld33" appearance="outline">
+                <mat-label>{{"v.selectVehicle" | translate}}</mat-label>
+  
+                <mat-select [(ngModel)]="selectedVehicle" [ngModelOptions]="{standalone: true}"
+                    [disableOptionCentering]="true" panelClass="customSelect"
+                    placeholder='{{"v.selectVehicle" | translate}}'>
+                    <div class="searchSelect border-bottom">
+                        <input class='searchDropdown' type="text" placeholder="{{'search' | translate}}"
+                            [(ngModel)]="searchVehicle">
+                        <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                                    fill="#848588" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                                    fill="#848588" />
+                            </svg>
+                        </mat-icon>
+                    </div>
+                    <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                    <mat-option [value]="item?.id" *ngFor="let item of vehicleList | filter: searchVehicle : 'vehicle'">
+                        {{item?.license_plate}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field class="fields fileld33 ngx-daterangepicker-action" appearance="outline">
+                <mat-label>{{"selectRange" | translate}}</mat-label>
+                <input
+                matInput
+                ngxDaterangepickerMd
+                [(ngModel)]="selectedShow"
+                [showCustomRangeLabel]="true"
+                [alwaysShowCalendars]="alwaysShowCalendars"
+                [ranges]="ranges"
+                [showClearButton]="false"
+                [showCancel]="true"
+                [linkedCalendars]="true"
+                [isTooltipDate]="isTooltipDate"
+                [isInvalidDate]="isInvalidDate"
+                [locale]="{ customRangeLabel: customeRange,applyLabel:setDate ,cancelLabel:cancelDate, daysOfWeek:dayWeek, monthNames:month}"
+                (rangeClicked)="rangeClicked($event)"
+                (datesUpdated)="datesUpdated($event)"
+                [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
+                [showRangeLabelOnInput]="showRangeLabelOnInput"
+                [maxDate]='maxDate'
+                readonly
+              />
+                <span class="calIconRight"><img src="assets/images/calendar.svg"></span>
+            </mat-form-field>
+        </div>
+        <div class="d-flex flex-wrap justify-content-end mt-2">
+            <div>
+                <button mat-button class="filterBtn resetBtn" (click)="resetToLastStateVehicle();resetFilterVehicle()">Reset</button>
+            </div>
+            <div>
+                <button mat-button class="filterBtn applyBtn" (click)="filterApply()">{{"apply" | translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- trip filter -->
+    <div class="filterBody" *ngIf="showFilter==2">
+        <div class="filterBodyTitle">
+          <h4>Filters</h4>
+          <span (click)="changeState()"
+            ><img src="assets/images/close-circle.svg"
+          /></span>
+        </div>
+        <div class="profileBox">
+          <mat-form-field class="fields fileld33" appearance="outline">
+            <!-- (selectionChange)='getVehicles(selectedVehicleCategory)' -->
+            <mat-label>{{ "v.vehicleCategory" | translate }}</mat-label>
+            <mat-select
+              [(ngModel)]="selectedVehicleCategory"
+              [ngModelOptions]="{ standalone: true }"
+              [disableOptionCentering]="true"
+              panelClass="customSelect"
+              placeholder="{{ 'v.vehicleCategory' | translate }}"
+            >
+              <div class="searchSelect border-bottom">
+                <input
+                  class="searchDropdown"
+                  type="text"
+                  placeholder="{{ 'search' | translate }}"
+                  [(ngModel)]="searchCategory"
+                />
+                <mat-icon
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                      fill="#848588"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                      fill="#848588"
+                    />
+                  </svg>
+                </mat-icon>
+              </div>
+              <mat-option [value]="'all'">{{
+                "all" | translate | titlecase
+              }}</mat-option>
+              <mat-option
+                [value]="item?.id"
+                *ngFor="
+                  let item of vehicleCategoryData
+                    | filter: searchCategory:'vehicleCategory'
+                "
+              >
+                {{ item?.name || "NA" }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="fields fileld33" appearance="outline">
+            <!-- (selectionChange)='getDriverList(selectedVehicleCategory,selectedVehicle)' -->
+            <mat-label>{{ "v.selectVehicle" | translate }}</mat-label>
+            <mat-select
+              [(ngModel)]="selectedVehicle"
+              [ngModelOptions]="{ standalone: true }"
+              [disableOptionCentering]="true"
+              panelClass="customSelect"
+              placeholder="{{ 'v.selectVehicle' | translate }}"
+            >
+              <div class="searchSelect border-bottom">
+                <input
+                  class="searchDropdown"
+                  type="text"
+                  placeholder="{{ 'search' | translate }}"
+                  [(ngModel)]="searchVehicle"
+                />
+                <mat-icon
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                      fill="#848588"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                      fill="#848588"
+                    />
+                  </svg>
+                </mat-icon>
+              </div>
+              <mat-option [value]="'all'">{{
+                "all" | translate | titlecase
+              }}</mat-option>
+              <mat-option
+                [value]="item?.id"
+                *ngFor="let item of vehicleList | filter: searchVehicle:'vehicle'"
+                >{{ item?.license_plate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field
+            class="fields ngx-daterangepicker-action fileld33"
+            appearance="outline"
+          >
+            <mat-label>{{ "selectRange" | translate }}</mat-label>
+            <input
+                matInput
+                ngxDaterangepickerMd
+                [(ngModel)]="selectedShow"
+                [showCustomRangeLabel]="true"
+                [alwaysShowCalendars]="alwaysShowCalendars"
+                [ranges]="ranges"
+                [showClearButton]="false"
+                [showCancel]="true"
+                [linkedCalendars]="true"
+                [isTooltipDate]="isTooltipDate"
+                [isInvalidDate]="isInvalidDate"
+                [locale]="{ customRangeLabel: customeRange,applyLabel:setDate ,cancelLabel:cancelDate, daysOfWeek:dayWeek, monthNames:month}"
+                (rangeClicked)="rangeClicked($event)"
+                (datesUpdated)="datesUpdated($event)"
+                [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
+                [showRangeLabelOnInput]="showRangeLabelOnInput"
+                [maxDate]='maxDate'
+                readonly
+              />
+            <span class="calIconRight"
+              ><img src="assets/images/calendar.svg"
+            /></span>
+          </mat-form-field>
+        </div>
+        <div class="d-flex flex-wrap justify-content-end mt-2">
+          <button mat-button class="filterBtn resetBtn" (click)="resetToLastStateTrip();resetFilterTrip()">Reset</button>
+    
+          <button mat-button class="filterBtn applyBtn" (click)="filterApply()">{{"apply" | translate}}</button>
+      </div>
+      </div>
+
+    <!-- exception filter -->
+    <div class="filterBody" *ngIf="showFilter==3">
+        <div class="filterBodyTitle">
+            <h4>Filters</h4>
+            <span (click)="changeState()"><img src="assets/images/close-circle.svg"></span>
+        </div>
+        <div class="profileBox">
+            <mat-form-field class="fields fileld50" appearance="outline">
+                <mat-label>{{"v.vehicleCategory" | translate}}</mat-label>
+                <mat-select [(ngModel)]="selectedVehicleCategory" [ngModelOptions]="{standalone: true}"
+                    [disableOptionCentering]="true" panelClass="customSelect"
+                    (selectionChange)='getVehicles(selectedVehicleCategory)'
+                    placeholder='{{"v.vehicleCategory" | translate}}'>
+                    <div class="searchSelect border-bottom">
+                        <input class='searchDropdown' type="text" placeholder="{{'search' | translate}}"
+                            [(ngModel)]="searchCategory">
+                        <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                                    fill="#848588" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                                    fill="#848588" />
+                            </svg>
+                        </mat-icon>
+                    </div>
+                    <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                    <mat-option [value]="item?.id"
+                        *ngFor="let item of vehicleCategoryData | filter: searchCategory : 'vehicleCategory'">
+                        {{item?.name || "NA"}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="fields fileld50" appearance="outline">
+                <mat-label>{{"v.selectVehicle" | translate}}</mat-label>
+                <mat-select [(ngModel)]="selectedVehicle" [ngModelOptions]="{standalone: true}"
+                    [disableOptionCentering]="true" panelClass="customSelect"
+                    (selectionChange)='getDriverList(selectedVehicleCategory,selectedVehicle)'
+                    placeholder='{{"v.selectVehicle" | translate}}'>
+                    <div class="searchSelect border-bottom">
+                        <input class='searchDropdown' type="text" placeholder="{{'search' | translate}}"
+                            [(ngModel)]="searchVehicle">
+                        <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                                    fill="#848588" />
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                                    fill="#848588" />
+                            </svg>
+                        </mat-icon>
+                    </div>
+                    <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                    <mat-option [value]="item?.id"
+                        *ngFor="let item of vehicleList | filter: searchVehicle : 'vehicle'">{{item?.license_plate}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="fields fileld50 ngx-daterangepicker-action-left" appearance="outline">
+                <mat-label>{{"selectRange" | translate}}</mat-label>
+                <input
+                matInput
+                ngxDaterangepickerMd
+                [(ngModel)]="selectedShow"
+                [showCustomRangeLabel]="true"
+                [alwaysShowCalendars]="alwaysShowCalendars"
+                [ranges]="ranges"
+                [showClearButton]="false"
+                [showCancel]="true"
+                [linkedCalendars]="true"
+                [isTooltipDate]="isTooltipDate"
+                [isInvalidDate]="isInvalidDate"
+                [locale]="{ customRangeLabel: customeRange,applyLabel:setDate ,cancelLabel:cancelDate, daysOfWeek:dayWeek, monthNames:month}"
+                (rangeClicked)="rangeClicked($event)"
+                (datesUpdated)="datesUpdated($event)"
+                [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
+                [showRangeLabelOnInput]="showRangeLabelOnInput"
+                [maxDate]='maxDate'
+                readonly
+              />
+                <span class="calIconRight"><img src="assets/images/calendar.svg"></span>
+            </mat-form-field>
+
+            <mat-form-field class="fields fileld50" appearance="outline">
+                <mat-label>Select exception type</mat-label>
+                <mat-select [(ngModel)]="selectedException" [ngModelOptions]="{standalone: true}"
+                    [disableOptionCentering]="true" panelClass="customSelect">
+                    <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                    <mat-option [value]="item?.value" *ngFor="let item of exceptions">{{item?.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-end mt-2">
+            <button mat-button class="filterBtn resetBtn" (click)="resetToLastStateException();resetFilterException()">Reset</button>
+
+            <button mat-button class="filterBtn applyBtn" (click)="filterApply()">{{"apply" | translate}}</button>
+        </div>
+    </div>
+
+    <!-- Map view filter -->
+    <div class="filterBody" *ngIf="showFilter==4">
+        <div class="filterBodyTitle">
+          <h4>Filters</h4>
+          <span (click)="changeState()"
+            ><img src="assets/images/close-circle.svg"
+          /></span>
+        </div>
+    
+        <div class="profileBox">
+          <mat-form-field class="fields fileld50" appearance="outline">
+            <!-- (selectionChange)='getVehicles(selectedVehicleCategory)' -->
+            <mat-label>{{ "v.vehicleCategory" | translate }}</mat-label>
+            <mat-select
+              [(ngModel)]="selectedVehicleCategory"
+              [ngModelOptions]="{ standalone: true }"
+              [disableOptionCentering]="true"
+              panelClass="customSelect"
+              placeholder="{{ 'v.vehicleCategory' | translate }}"
+            >
+              <div class="searchSelect border-bottom">
+                <input
+                  class="searchDropdown"
+                  type="text"
+                  placeholder="{{ 'search' | translate }}"
+                  [(ngModel)]="searchCategory"
+                />
+                <mat-icon
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                      fill="#848588"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                      fill="#848588"
+                    />
+                  </svg>
+                </mat-icon>
+              </div>
+              <mat-option [value]="'all'">{{
+                "all" | translate | titlecase
+              }}</mat-option>
+              <mat-option
+                [value]="item?.id"
+                *ngFor="
+                  let item of vehicleCategoryData
+                    | filter: searchCategory:'vehicleCategory'
+                "
+              >
+                {{ item?.name || "NA" }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="fields fileld50" appearance="outline">
+            <mat-label>{{ "v.selectVehicle" | translate }}</mat-label>
+            <!-- (selectionChange)='getDriverList(selectedVehicleCategory,selectedVehicle)' -->
+            <mat-select
+              [(ngModel)]="selectedVehicle"
+              [ngModelOptions]="{ standalone: true }"
+              [disableOptionCentering]="true"
+              panelClass="customSelect"
+              placeholder="{{ 'v.selectVehicle' | translate }}"
+            >
+              <div class="searchSelect border-bottom">
+                <input
+                  class="searchDropdown"
+                  type="text"
+                  placeholder="{{ 'search' | translate }}"
+                  [(ngModel)]="searchVehicle"
+                />
+                <mat-icon
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                      fill="#848588"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                      fill="#848588"
+                    />
+                  </svg>
+                </mat-icon>
+              </div>
+              <mat-option [value]="'all'">{{
+                "all" | translate | titlecase
+              }}</mat-option>
+              <mat-option
+                [value]="item?.license_plate"
+                *ngFor="let item of vehicleList | filter: searchVehicle:'vehicle'"
+                >{{ item?.license_plate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+    
+        <div class="d-flex flex-wrap justify-content-end mt-2">
+          <button
+            mat-button
+            class="filterBtn resetBtn"
+            (click)="resetToLastStateMap(); resetFilterMap()"
+          >
+            Reset
+          </button>
+    
+          <button mat-button class="filterBtn applyBtn" (click)="filterApply()">
+            {{ "apply" | translate }}
+          </button>
+        </div>
+      </div>
+
+  </div>

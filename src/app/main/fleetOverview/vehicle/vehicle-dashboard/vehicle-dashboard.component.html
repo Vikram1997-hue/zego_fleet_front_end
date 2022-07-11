@@ -1,0 +1,140 @@
+<div class=" vehcileMainBox">
+  <div class="boxes25" *ngIf="bestScore && bestScore.length">
+    <app-vehicle-cards [border]="'#46E18C'" [type]="1" [data]="bestScore"></app-vehicle-cards>
+  </div>
+  <div class="boxes25" *ngIf="worstScore && worstScore.length">
+    <app-vehicle-cards  [border]="'#F3543F'" [type]="2" [data]="worstScore"></app-vehicle-cards>
+  </div>
+  <div class="boxes25" *ngIf="mostTravelled && mostTravelled.length">
+    <app-vehicle-cards  [border]="'#FDDBD7'" [type]="3" [data]="mostTravelled"></app-vehicle-cards>
+  </div>
+  <div class="boxes25" *ngIf="probablyCrashed && probablyCrashed.length">
+    <app-vehicle-cards [border]="'#FDDBD7'" [type]="4" [data]="probablyCrashed" ></app-vehicle-cards>
+  </div>
+</div>
+
+<div class="vehicleInfo">
+  <h3 class="vehTitle">{{"v.vehicleList" | translate}}</h3>
+  <svg (click)="exportApi()" class="vehimage" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M7.49984 18.3337H12.4998C16.6665 18.3337 18.3332 16.667 18.3332 12.5003V7.50033C18.3332 3.33366 16.6665 1.66699 12.4998 1.66699H7.49984C3.33317 1.66699 1.6665 3.33366 1.6665 7.50033V12.5003C1.6665 16.667 3.33317 18.3337 7.49984 18.3337Z"
+      stroke="#46E18C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M8.82477 6.40039H12.3581V9.94206" stroke="#46E18C" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" />
+    <path d="M12.3583 6.40039L7.64166 11.1171" stroke="#46E18C" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" />
+    <path d="M5 13.7588C8.24167 14.8421 11.7583 14.8421 15 13.7588" stroke="#46E18C" stroke-width="1.5"
+      stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+
+  <ng-container *ngIf="tableDataLoading; else elseTemplate">
+    <mat-spinner style="margin: 0 auto;" [diameter]='50'></mat-spinner>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="table-responsive">
+      <table mat-table matSort (matSortChange)='sortData($event)' [dataSource]="dataSource" class="w-100 booking-table"
+        matSortDisableClear>
+        <ng-container matColumnDef="license_plate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"v.license" | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+            {{element?.license_plate}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="model">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"v.veh" | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+           <span> {{element?.model || 'NA'}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total_distance">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"totalkm" | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element?.total_distance) || 'NA'}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="total_trips">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"totalTrips" | translate}}</th>
+          <td mat-cell *matCellDef="let element" class="cursor category_wrap"
+            (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element?.total_trips) || "NA"}} </td>
+        </ng-container>
+
+
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="harsh_event">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{"harshEvent" | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element?.harsh_event) || 'NA'}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="vehicle_score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'vehScore' | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element.vehicle_score)|| "NA"}}
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="speed_score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"t.speedScore" | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element.speed_score)|| 'NA'}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="idiling_score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"idliScore" | translate}}</th>
+          <td mat-cell *matCellDef="let element" class="cursor">
+            {{service.convertToDutch(element.idiling_score ) || 'NA'}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="acclaration_score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"hardAcceleration" | translate}} </th>
+          <td mat-cell *matCellDef="let element" class="cursor" (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element.acclaration_score) || "NA"}}
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="breaking_score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"hardBraking" | translate}} </th>
+          <td mat-cell *matCellDef="let element; let i = index" class="cursor"
+            (click)="routeToVehicleDetail(element)">
+            {{service.convertToDutch(element.breaking_score) || 'NA'}}
+            <!-- <svg class="ml-3" *ngIf="i%2 == 0" width="8" height="12" viewBox="0 0 8 12" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.5547 5.03904C7.42243 5.1713 7.20306 5.1713 7.07079 5.03904L4.34154 2.30978L4.34154 10.5169C4.34154 10.6137 4.30282 10.6976 4.24153 10.7589C4.18023 10.8201 4.09636 10.8589 3.99957 10.8589C3.81246 10.8589 3.65761 10.704 3.65761 10.5169L3.65761 2.30978L0.928357 5.03904C0.796089 5.1713 0.576716 5.1713 0.444447 5.03904C0.312179 4.90677 0.312179 4.68739 0.444447 4.55513L3.75762 1.24196C3.78988 1.20969 3.82537 1.18711 3.87053 1.16776C3.95118 1.13227 4.04796 1.13227 4.12862 1.16776C4.17378 1.18711 4.20927 1.20969 4.24153 1.24196L7.5547 4.55513C7.68697 4.68739 7.68697 4.90677 7.5547 5.03904Z"
+                fill="#46E18C" stroke="#46E18C" stroke-width="0.5" />
+            </svg>
+            <svg class="ml-3" *ngIf="i%2 != 0" width="8" height="12" viewBox="0 0 8 12" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.445302 6.96096C0.577571 6.8287 0.796943 6.8287 0.929212 6.96096L3.65846 9.69022L3.65846 1.4831C3.65846 1.38632 3.69718 1.30244 3.75847 1.24115C3.81977 1.17985 3.90365 1.14114 4.00043 1.14114C4.18754 1.14114 4.34239 1.29599 4.34239 1.4831L4.34239 9.69022L7.07164 6.96096C7.20391 6.8287 7.42328 6.8287 7.55555 6.96096C7.68782 7.09323 7.68782 7.31261 7.55555 7.44487L4.24238 10.758C4.21012 10.7903 4.17463 10.8129 4.12947 10.8322C4.04882 10.8677 3.95204 10.8677 3.87138 10.8322C3.82622 10.8129 3.79073 10.7903 3.75847 10.758L0.445302 7.44487C0.313033 7.31261 0.313033 7.09323 0.445302 6.96096Z"
+                fill="#F3543F" stroke="#F3543F" stroke-width="0.5" />
+            </svg> -->
+
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="cornering_score">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"harshCorner" | translate}}</th>
+          <td mat-cell *matCellDef="let element" class="cursor">
+            {{service.convertToDutch(element.cornering_score) || 'NA'}}
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </ng-template>
+  <mat-paginator [length]="totalCount" #paginator [pageSize]="limit" [pageSizeOptions]="pageSizeOptions"
+    (page)='pageChange($event)' [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

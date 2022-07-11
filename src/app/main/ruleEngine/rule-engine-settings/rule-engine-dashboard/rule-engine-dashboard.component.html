@@ -1,0 +1,132 @@
+<div class="mainFilter">
+  <div class="filterHeader">
+    {{"sidebar.ruleEngineSetting" | translate}}
+    <div>
+      <button class="btn btnFilterExport enable-click-event"><img src="assets/images/export.svg"></button>
+    </div>
+  </div>
+</div>
+
+<div class="vehicleInfo">
+  <h3 class="vehTitle">{{"sidebar.ruleEngineSetting" | translate}}</h3>
+  <div class="ruleTab">
+    <p class="cursor" [ngClass]="{'active': active == 1}" (click)="exceptionType('',1)">{{"all" | translate}}</p>
+    <p class="cursor" [ngClass]="{'active': active == 2}" (click)="exceptionType('speed',2)">{{"rule.speeding" | translate}}</p>
+    <p class="cursor" [ngClass]="{'active': active == 3}" (click)="exceptionType('idling',3)">{{"rule.idling" | translate}}</p>
+    <p class="cursor" [ngClass]="{'active': active == 4}" (click)="exceptionType('acceleration',4)">{{"rule.safeAcc" | translate}} </p>
+    <p class="cursor" [ngClass]="{'active': active == 5}" (click)="exceptionType('breaking',5)">{{"rule.harshBraking" | translate}} </p>
+    <p class="cursor" [ngClass]="{'active': active == 6}" (click)="exceptionType('cornering',6)">{{"rule.harshCorn" | translate}} </p>
+  </div>
+
+
+  <div class="table-responsive">
+    <table mat-table matSort (matSortChange)='sortData($event)'  matSortDisableClear [dataSource]="dataSource" class="mat-elevation-z8 w-100 booking-table"
+      *ngIf="!isTripHistoryLoading">
+      <!-- Vehicle category Column -->
+      <ng-container matColumnDef="organization.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.group" | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element?.organization?.name || element?.org_id}} </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="percentage_of_violation_max">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.triggerEvent" | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          {{element?.percentage_of_violation_min}}-{{element?.percentage_of_violation_max || 'NA'}}% exce... </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="duration_of_violation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.time" | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element?.duration_of_violation || 'NA'}}s</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.point" | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element?.score || 'NA'}} </td>
+      </ng-container>
+
+      <!-- Speed range  Column -->
+      <ng-container matColumnDef="speed">
+        <th mat-header-cell *matHeaderCellDef>{{"rule.range" | translate}} </th>
+        <td mat-cell *matCellDef="let element"> <span *ngIf="element?.exception_type!='speed'">{{element?.gforce_limit}}</span> <span *ngIf="element?.exception_type=='speed'">{{element?.road_type_max ==1000 ? '>' : ''}}{{element?.road_type_min }}{{element?.road_type_max !=1000 ? '-': ''}}{{element?.road_type_max ==1000 ? '' : element?.road_type_max}} </span>&nbsp;<span>{{checkUnit(element?.exception_type)}}</span> <span *ngIf="element?.exception_type!='speed' && element?.exception_type!='idling'"><sup>2</sup></span>  </td>
+      </ng-container>
+
+      <!-- Road factor Column -->
+      <ng-container matColumnDef="road_factor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.roadFactor" | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{element?.road_factor || 'NA'}} </td>
+      </ng-container>
+
+      <!-- Vehicle category Column -->
+      <ng-container matColumnDef="vehicle_category.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"rule.vehCategory" | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element?.vehicle_category?.name || 'NA'}} </td>
+      </ng-container>
+
+      <!-- Vehicle category Column -->
+      <ng-container matColumnDef="day_night_driving">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.dayNight" | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element?.day_night_driving || 'NA'}} </td>
+      </ng-container>
+
+      <!-- Vehicle category Column -->
+      <ng-container matColumnDef="weather">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"rule.weather" | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element?.weather || 'NA'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="exception_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Exception Category
+        </th>
+        <td mat-cell *matCellDef="let element" class="text-capitalize">{{ element?.exception_type }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> {{"rule.actions" | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- <span *ngIf="element?.is_active== true" 
+          (click)="resetStatus(element,false)" class="date success cursor">{{"rule.markInactive" | translate}}</span>
+        <span class="date danger cursor" *ngIf="element?.is_active== false" [ngClass]="{'activeFalse': element?.is_active== false}" (click)="resetStatus(element,true)">{{"rule.markActive" | translate}}</span> -->
+          <span class="edit cursor" (click)="editRule(element)">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.5 18.3333H2.5C2.15833 18.3333 1.875 18.0499 1.875 17.7083C1.875 17.3666 2.15833 17.0833 2.5 17.0833H17.5C17.8417 17.0833 18.125 17.3666 18.125 17.7083C18.125 18.0499 17.8417 18.3333 17.5 18.3333Z" fill="#604EFF"/>
+              <path d="M15.8505 2.90005C14.2338 1.28338 12.6505 1.24172 10.9921 2.90005L9.9838 3.90838C9.90047 3.99172 9.86714 4.12505 9.90047 4.24172C10.5338 6.45005 12.3005 8.21672 14.5088 8.85005C14.5421 8.85838 14.5755 8.86672 14.6088 8.86672C14.7005 8.86672 14.7838 8.83338 14.8505 8.76672L15.8505 7.75838C16.6755 6.94172 17.0755 6.15005 17.0755 5.35005C17.0838 4.52505 16.6838 3.72505 15.8505 2.90005Z" fill="#604EFF"/>
+              <path d="M13.0079 9.60841C12.7663 9.49175 12.5329 9.37508 12.3079 9.24175C12.1246 9.13342 11.9496 9.01675 11.7746 8.89175C11.6329 8.80008 11.4663 8.66675 11.3079 8.53341C11.2913 8.52508 11.2329 8.47508 11.1663 8.40842C10.8913 8.17508 10.5829 7.87508 10.3079 7.54175C10.2829 7.52508 10.2413 7.46675 10.1829 7.39175C10.0996 7.29175 9.95795 7.12508 9.83295 6.93341C9.73295 6.80841 9.61628 6.62508 9.50795 6.44175C9.37461 6.21675 9.25795 5.99175 9.14128 5.75841V5.75841C8.98832 5.43063 8.5581 5.33326 8.30233 5.58903L3.61628 10.2751C3.50795 10.3834 3.40795 10.5917 3.38295 10.7334L2.93295 13.9251C2.84961 14.4917 3.00795 15.0251 3.35795 15.3834C3.65795 15.6751 4.07461 15.8334 4.52461 15.8334C4.62461 15.8334 4.72461 15.8251 4.82461 15.8084L8.02461 15.3584C8.17461 15.3334 8.38295 15.2334 8.48295 15.1251L13.1767 10.4313C13.4274 10.1806 13.3332 9.74936 13.0079 9.60841V9.60841Z" fill="#604EFF"/>
+              </svg>
+              
+          </span>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <ng-container class="py-3" *ngIf="isTripHistoryLoading">
+      <mat-spinner style="margin: 0 auto;" [diameter]='50'></mat-spinner>
+    </ng-container>
+    <ng-container *ngIf="dataSource.length==0 && isTripHistoryLoading==false">
+      <div class="d-flex justify-content-center no-data">
+        <h2>No Data Found</h2>
+      </div>
+    </ng-container>
+    <mat-paginator  [length]="totalCount" #paginator [pageSize]="limit"
+      (page)='pageChange($event)' [showFirstLastButtons]="true" [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+    
+  </div>
+  <div class="cursor d-flex justify-content-end">
+    <div class="circlePlus" [routerLink]="[ 'addruleengine' ]">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 13H24" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 24V2" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        
+      <!-- <img src="/assets/images/add-circle.png" alt="" > -->
+    </div>
+    
+  </div>
+</div>

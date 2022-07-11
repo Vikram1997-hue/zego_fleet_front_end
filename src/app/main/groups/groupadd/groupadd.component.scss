@@ -1,0 +1,66 @@
+@import "../../../../assets//scss/variables.scss";
+
+.filterBody{
+    .editTitle{
+        font: 600 18px/24px ModernEra;
+        color: $Secondary_black;
+        margin-bottom: 20px;
+    }
+    .editRule{
+        @include flex-start;
+        align-items: center;
+        margin-bottom: 30px;
+        .editRuleTitle{
+            color: $Secondary_black;
+            font: 600 16px/16px ModernEra;
+            margin-bottom: 0;
+            width: 255px;
+        }
+        .editRuleTitleBack{
+            font: 600 16px/16px ModernEra;
+            color: #0064FF;
+            margin-bottom: 0;
+            padding: 20px 30px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            width: calc(100% - 255px);
+        }
+    }
+
+}
+.BtnBlock {
+    text-align: center;
+    padding: 25px;
+    .btnSave {
+        padding: 15px 80px;
+        background: #0064FF;
+        border-radius: 100px;
+        margin: 0 14px;
+        font: 600 16px/22px ModernEra;
+        color: $white;
+    }
+}
+
+// .profileBox {
+//     .fields {
+//         &.fileld33 {
+//             margin: 0 15px 0 0;
+//             &:nth-child(3n + 2) {
+//                 margin-right: 0;
+//             }
+//         }
+//     }
+//     .pointer-cursor{
+//         cursor: not-allowed;
+//     }
+// }
+.vehTitle {
+    font: 600 16px/19px ModernEra;
+    color: $Secondary_black;
+}
+
+
+::ng-deep .Groups{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #F44336 !important;
+    padding: 14px 6px  !important;
+}

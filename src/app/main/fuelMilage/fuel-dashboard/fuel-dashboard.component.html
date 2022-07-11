@@ -1,0 +1,213 @@
+<div class="mainFilter">
+    <div class="filterHeader">
+        {{"sidebar.milage" | translate}}
+        <div>
+            <button class="btn btnFiliter" (click)="changeState()" [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample"><img src="assets/images/filter.svg">
+            </button> <button class="btn btnFilterExport enable-click-event"><img
+                    src="assets/images/export.svg"></button>
+        </div>
+    </div>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <div class="filterBody">
+            <div class="filterBodyTitle">
+                <h4>Filters</h4>
+                <span (click)="changeState()"><img src="assets/images/close-circle.svg"></span>
+            </div>
+            <div class="filterSearch mb-20">
+                <input type="text" placeholder="Search..." [(ngModel)]="searchString" class="form-control">
+                <span class="filterSearchIcon"><img src="assets/images/search.svg"></span>
+            </div>
+            <div class="profileBox">
+                <mat-form-field class="fields fileld33" appearance="outline">
+                    <mat-label>{{"v.vehicleCategory" | translate}}</mat-label>
+                    <!-- (selectionChange)='getVehicles(selectedVehicleCategory)' -->
+                    <mat-select [(ngModel)]="selectedVehicleCategory" [ngModelOptions]="{standalone: true}"
+                        [disableOptionCentering]="true" panelClass="customSelect"
+                        placeholder='{{"v.vehicleCategory" | translate}}'>
+                        <div class="searchSelect border-bottom">
+                            <input class='searchDropdown' type="text" placeholder="{{'search' | translate}}"
+                                [(ngModel)]="searchCategory">
+                            <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                                        fill="#848588" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                                        fill="#848588" />
+                                </svg>
+                            </mat-icon>
+                        </div>
+                        <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                        <mat-option [value]="item?.id"
+                            *ngFor="let item of vehicleCategoryData | filter: searchCategory : 'vehicleCategory'">
+                            {{item?.name || "NA"}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!-- (selectionChange)='selectedVehicleCategory(selectedVehicle)' -->
+                <mat-form-field class="fields fileld33" appearance="outline">
+                    <mat-label>{{"v.selectVehicle" | translate}}</mat-label>
+                    <mat-select [(ngModel)]="selectedVehicle" [ngModelOptions]="{standalone: true}"
+                        [disableOptionCentering]="true" panelClass="customSelect"
+                        placeholder='{{"v.selectVehicle" | translate}}'>
+                        <div class="searchSelect border-bottom">
+                            <input class='searchDropdown' type="text" placeholder="{{'search' | translate}}"
+                                [(ngModel)]="searchVehicle">
+                            <mat-icon><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M9.58973 9.59067C9.76496 9.41543 10.0491 9.41543 10.2243 9.59067L12.7013 12.0677C12.8765 12.2429 12.8765 12.527 12.7013 12.7022C12.526 12.8775 12.2419 12.8775 12.0667 12.7022L9.58973 10.2253C9.4145 10.05 9.4145 9.7659 9.58973 9.59067Z"
+                                        fill="#848588" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.46094 2.06443C4.03226 2.06443 2.06344 4.03328 2.06344 6.46198C2.06344 8.89069 4.03226 10.8595 6.46094 10.8595C8.88961 10.8595 10.8584 8.89069 10.8584 6.46198C10.8584 4.03328 8.88961 2.06443 6.46094 2.06443ZM1.16602 6.46198C1.16602 3.53764 3.53663 1.16699 6.46094 1.16699C9.38524 1.16699 11.7559 3.53764 11.7559 6.46198C11.7559 9.38633 9.38524 11.757 6.46094 11.757C3.53663 11.757 1.16602 9.38633 1.16602 6.46198Z"
+                                        fill="#848588" />
+                                </svg>
+                            </mat-icon>
+                        </div>
+                        <mat-option [value]="'all'">{{('all' | translate) | titlecase}}</mat-option>
+                        <mat-option [value]="item?.id"
+                            *ngFor="let item of vehicleList | filter: searchVehicle : 'vehicle'">{{item?.license_plate}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="fields fileld33 ngx-daterangepicker-action" appearance="outline">
+                    <mat-label>{{"selectRange" | translate}}</mat-label>
+                    <input matInput ngxDaterangepickerMd [(ngModel)]="selectedShow" [showCustomRangeLabel]="true"
+                        [alwaysShowCalendars]="alwaysShowCalendars" [ranges]="ranges" [showClearButton]="false"
+                        [showCancel]="true" [linkedCalendars]="true" [isTooltipDate]="isTooltipDate"
+                        [isInvalidDate]="isInvalidDate" [locale]="{applyLabel: 'Set Date'}"
+                        (rangeClicked)="rangeClicked($event)" (datesUpdated)="datesUpdated($event)"
+                        [keepCalendarOpeningWithRange]="keepCalendarOpeningWithRange"
+                        [showRangeLabelOnInput]="showRangeLabelOnInput" readonly />
+                    <span class="calIconRight"><img src="assets/images/calendar.svg"></span>
+                </mat-form-field>
+            </div>
+            <div class="d-flex flex-wrap justify-content-end mt-2">
+                <div>
+                    <button mat-button class="filterBtn cancleBtn"
+                        (click)="resetToLastState();resetFilter()">Reset</button>
+                </div>
+                <div>
+                    <button mat-button class="filterBtn applyBtn" (click)="filterApply()">{{"apply" | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="vehicalSec">
+    <div class="box vehicalBox">
+        <div class="leftsec">
+            <p class="title" title='{{"t.ride" | translate}}'>{{"t.ride" | translate}}</p>
+            <h4 class="value">{{service.convertToDutch(dashboardData?.total_trips)}}</h4>
+        </div>
+        <div class="mapImg">
+            <img src="assets/images/delivery-truck.png">
+        </div>
+    </div>
+    <div class="box driven">
+        <div class="leftsec">
+            <p class="title" title=' {{"averageMileageIce" | translate}}'>        {{"averageMileageIce" | translate}}
+                </p>
+            <h4 class="valueFuel">{{service.convertToDutch(dashboardData?.average_milage_ice)}} <span *ngIf="dashboardData?.average_milage_ice">km/ltr</span> </h4>
+        </div>
+        <div class="truckImg">
+            <img src="assets/images/truck.png">
+        </div>
+    </div>
+    <div class="box behaviour evBlock">
+        <div class="leftsec">
+            <p class="title" title='{{"averageMileageEv" | translate}}'>{{"averageMileageEv" | translate}} </p>
+            <h4 class="valueFuel">{{service.convertToDutch(dashboardData?.average_milage_ev)}} <span *ngIf="dashboardData?.average_milage_ev">km/kWh</span></h4>
+        </div>
+        <div class="truckImg">
+            <img src="assets/images/evCharge.png">
+        </div>
+    </div>
+</div>
+<div class="vehicleInfo mb-20">
+    <mat-spinner *ngIf="isFuelListLoading" style="margin: 0 auto;" [diameter]='50'></mat-spinner>
+    <div class="speedChart" style="height: 400px">
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+<div class="vehicleInfo">
+    <div class="d-flex flex-wrap justify-content-between">
+        <div class="d-flex">
+            <h3 class="vehTitle">{{"mileageInfo" | translate}}</h3>
+            <span><img src="assets/images/export.svg"></span>
+        </div>
+        <!-- <div class="d-flex flex-wrap align-items-center evToggle">
+            <span class="active">ICE vehicle</span>
+            <mat-slide-toggle (change)='selectFuelType($event)'></mat-slide-toggle>
+            <span>EV vehicle</span>
+        </div> -->
+
+    </div>
+
+    <ng-container *ngIf="isFuelListLoading; else elseTemplate">
+        <mat-spinner style="margin: 0 auto;" [diameter]='50'></mat-spinner>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div class="table-responsive">
+            <table mat-table matSort (matSortChange)='sortData($event)'  matSortDisableClear [dataSource]="dataSource" class="mat-elevation-z8 w-100 booking-table">
+                <!-- Position Column -->
+                <ng-container matColumnDef="license_plate">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header > {{"v.license" | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.license_plate || 'NA'}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="category_name">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{"v.category" | translate}} </th>
+                    <td  mat-cell *matCellDef="let element">
+                        {{element.category_name || "NA"}}
+
+                        </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="vehicle_model">
+                    <th class="pl-3" mat-header-cell *matHeaderCellDef  mat-sort-header> {{"v.vehicle" | translate}} </th>
+                    <td class="pl-3" mat-cell *matCellDef="let element"> {{element.vehicle_model || 'NA'}} </td>
+                </ng-container>
+
+                <!-- Speed range  Column -->
+                <ng-container matColumnDef="fuel_type">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{"v.fuel" | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fuel_type || 'NA'}} </td>
+                </ng-container>
+
+                <!-- Road factor Column -->
+                <ng-container matColumnDef="consumption100km">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> {{"v.consumption" | translate}}</th>
+                    <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="element.consumption100km !== 'NA'; else elseTemplate">
+                        {{service.convertToDutch(element.consumption100km)}}
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            NA
+                        </ng-template>
+                        </td>
+                </ng-container>
+
+
+                <!-- Symbol Column
+                <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Actions </th>
+                    <td mat-cell *matCellDef="let element"> <span class="date success">Mark as Inactive</span>
+                        <span class="edit cursor"><img src="assets/images/edit.png"></span>
+                    </td>
+                </ng-container> -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </ng-template>
+    <mat-paginator [length]="totalCount" #paginator [pageSize]="limit" [pageSizeOptions]="pageSizeOptions"
+        (page)='pageChange($event)' [showFirstLastButtons]="true">
+    </mat-paginator>
+</div>

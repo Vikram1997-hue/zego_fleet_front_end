@@ -1,0 +1,1974 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "assets/scss/variables.scss";
+@import "./assets/scss/common_variables.scss";
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ModernEra !important;
+    color: $black;
+    background: $bodyBackGray;
+}
+
+:focus {
+    outline: none;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+button {
+    &.mat-button {
+        font-family: Montserrat;
+    }
+
+    &.button-auth {
+        background: $C_Primary_Orange; //$white;
+        border: $White_labing_Yellow;
+        border-radius: 100px;
+        color: $white; //#371987;
+        padding: 15px;
+        // font: 600 18px/22px ModernEra;
+        font: 600 18px/22px ModernEra;
+        max-width: 230px;
+        svg {
+            path {
+                fill: $white;
+            }
+        }
+    }
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+    color: $white;
+    font:500 16px/24px ModernEra;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.mb-28 {
+    margin-bottom: 28px !important;
+}
+
+.mr-30 {
+    margin-right: 30px !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix,
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+    // top: -0.2em !important;
+    // top: 0 !important;
+
+    svg {
+        path {
+            fill: $white;
+        }
+
+        &.fill {
+            path {
+                fill: $danger;
+            }
+        }
+    }
+}
+
+.bg-graphic {
+    // margin: 0 auto;
+    min-height: 100vh;
+    padding: 200px 105px 50px 85px;
+
+    @media (max-width: 1250px) {
+        padding: 140px 70px 30px 50px;
+    }
+
+    @media (max-width: 575px) {
+        padding: 100px 20px 50px 20px;
+    }
+
+    .card-outer {
+        max-width: 540px;
+        width: 100%;
+        // margin: 0 auto;
+
+        h2 {
+            font-style: normal;
+            color: $white;
+            font: 700 32px/40px ModernEra_Bold;
+        }
+
+        .subtitle {
+            color: $white;
+            margin-bottom: 40px;
+            // font: 18px/26px ModernEra;
+            font: 500 18px/26px ModernEra_semiBold;
+
+            span {
+                color: $Primary_Blue;
+            }
+        }
+
+        .mat-icon img,
+        svg {
+            vertical-align: initial !important;
+        }
+
+        .error {
+            background: $errorGradiant;
+            border-radius: 10px;
+            padding: 14px 18px;
+            display: inline-block;
+            margin-bottom: 28px;
+
+            .msg {
+                margin: 0 68px 0 14px;
+                font: 14px/20px ModernEra;
+            }
+        }
+
+        .remsec {
+            .forget {
+                color: $white;
+                font: 16px/24px ModernEra;
+            }
+        }
+
+        .backSignin {
+            color: $white;
+            font: 16px/24px ModernEra_Bold;
+        }
+    }
+}
+
+.mat-select-value,
+optgroup,
+textarea.mat-input-element,
+.mat-input-element {
+    background-color: transparent !important;
+    // font: 600 14px/18px ModernEra !important;
+    font: 600 14px/18px ModernEra !important;
+    color: $Secondary_black !important;
+}
+
+::ng-deep .mat-input-element:disabled {
+    background-color: red !important;
+}
+
+
+
+/* language selection img */
+.en {
+    background: url("assets/images/eng.svg") left / cover no-repeat;
+    background-size: 32px 32px;
+    white-space: nowrap;
+}
+
+.nl {
+    background: url("assets/images/netherland.svg") left / contain no-repeat;
+    white-space: nowrap;
+}
+
+.fr {
+    background: url("assets/images/french.svg") left / contain no-repeat;
+    white-space: nowrap;
+}
+
+.de {
+    background: url("assets/images/german.svg") left / contain no-repeat;
+    white-space: nowrap;
+}
+
+/* language selection img */
+
+.mat-icon img {
+    vertical-align: initial !important;
+}
+
+
+
+/* vehical & trips top part css */
+.vehicalSec {
+    @include flex-start;
+
+    .box {
+        @include flex-justify;
+        align-items: center;
+        border-radius: 12px;
+        margin-bottom: 24px;
+
+        &.vehicalBox {
+            background: $vehicalBoxBack;
+            // width: 22%;
+            flex-basis: calc(26% - 20px);
+            max-width: calc(26% - 20px);
+            margin-right: 20px;
+        }
+
+        &.driven {
+            background: $drivenBoxBack;
+            // width: 31%;
+            flex-basis: calc(33% - 10px);
+            max-width: calc(33% - 10px);
+            margin-right: 10px;
+        }
+
+        &.behaviour {
+            background: $behaviourBoxBack;
+            flex-basis: calc(41% - 10px);
+            max-width: calc(41% - 10px);
+            margin-left: 10px;
+        }
+
+        &.evBlock {
+            background: $evBlockBoxBack;
+        }
+
+        .leftsec {
+            padding-left: 28px;
+            width: calc(100% - 122px);
+
+            @media (max-width: 1440px) {
+                padding-left: 15px;
+            }
+
+            .title {
+                color: $white;
+                margin-bottom: 5px;
+                font: 600 20px/24px ModernEra;
+                @include ellipsis;
+
+                @media (max-width: 1440px) {
+                    font: 600 17px/24px ModernEra;
+                }
+            }
+
+            .value {
+                color: $white;
+                margin-bottom: 5px;
+                font: 800 24px/24px ModernEra;
+
+                @media (max-width: 1440px) {
+                    font: 800 20px/20px ModernEra;
+                }
+
+                span {
+                    background-color: $Secondary_Alerts;
+                    font: 700 16px/24px ModernEra;
+                    padding: 3px 20px;
+                    border-radius: 25px;
+
+                    @media (max-width: 1440px) {
+                        font: 700 14px/24px ModernEra;
+                    }
+
+                    &.yellow {
+                        background-color: $orange;
+                    }
+                }
+            }
+        }
+
+        .truckImg {
+            img {
+                max-height: 92px;
+                height: 100%;
+            }
+        }
+    }
+
+    .catergoryBox {
+        @include flex-start;
+        border-radius: 10px;
+        background-color: $white;
+
+        &.selCat {
+            padding: 12.5px 14.5px;
+            width: 28%;
+            margin-right: 20px;
+        }
+
+        &.selValue {
+            padding: 12.5px 14.5px;
+            width: 40%;
+            @include flex-justify;
+
+            .valueBox {
+                text-align: center;
+                padding: 5px 18px;
+
+                .values {
+                    font: 600 16px/24px ModernEra;
+                    color: $Secondary_Dark;
+                }
+
+                .type {
+                    font: 500 12px/15px ModernEra;
+                    color: $Secondary_Dark;
+                }
+            }
+        }
+    }
+}
+
+/* vehical & trips top part css */
+.myPanelClass {
+    margin-top: 30px;
+}
+
+/* global success & danger */
+.success {
+    background: $Secondary_Alerts;
+}
+
+.danger {
+    background: $danger;
+}
+
+.noInfo {
+    background: $noInfo;
+}
+
+/* global success & danger */
+
+/* scrollbar smooth */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $scrollWhite;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $scrollBlack;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $scrollHoverBlack;
+}
+
+/* scrollbar smoth */
+.searchSelect {
+    position: relative;
+
+    .mat-icon {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+
+        svg {
+            width: 15px;
+            height: 15px;
+
+            path {
+                fill: $Primary_Blue;
+            }
+        }
+    }
+
+    .searchDropdown {
+        width: 100%;
+        padding-left: 35px;
+        height: 3em;
+        border: none;
+        padding: 10px 10px 10px 27px;
+    }
+}
+
+.mat-button-toggle-standalone,
+.mat-button-toggle-group {
+    border-radius: 8px !important;
+}
+
+/* date range right side */
+.ngx-daterangepicker-action {
+    position: relative;
+
+    &.mondata {
+        margin-bottom: 22px;
+        // width: 200px;
+
+        input {
+            border: 1px solid $borderColorLight;
+            border-radius: 56px;
+            padding: 9px 33px;
+        }
+
+        .calIcon {
+            position: absolute;
+            left: 11px;
+            top: 7px;
+        }
+
+        .closeIcon {
+            position: absolute;
+            right: 11px;
+            top: 7px;
+        }
+    }
+
+    .md-drppicker.double {
+        position: absolute;
+        top: auto !important;
+        left: auto !important;
+        right: 0 !important;
+        width: max-content !important;
+    }
+
+    .calIconRight {
+        position: absolute;
+        right: 12px;
+        top: 8px;
+    }
+
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: $white;
+        border: 1px solid $borderColor;
+        border-radius: 9px;
+    }
+}
+
+/* date range right side end*/
+
+/* date range left side */
+.ngx-daterangepicker-action-left {
+    position: relative;
+
+    &.mondata {
+        margin-bottom: 22px;
+
+        input {
+            border: 1px solid $borderColorLight;
+            border-radius: 56px;
+            padding: 9px 33px;
+        }
+
+        .calIcon {
+            position: absolute;
+            left: 11px;
+            top: 7px;
+        }
+
+        .closeIcon {
+            position: absolute;
+            right: 11px;
+            top: 7px;
+        }
+    }
+
+    .md-drppicker.double {
+        position: absolute;
+        top: auto !important;
+        left: 0 !important;
+        right: auto !important;
+        width: max-content !important;
+    }
+
+    .calIconRight {
+        position: absolute;
+        right: 12px;
+        top: 8px;
+    }
+
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: $white;
+        border: 1px solid $borderColor;
+        border-radius: 9px;
+    }
+}
+
+/* date range left side */
+
+/* mat sidebar width */
+.mat-drawer-inner-container {
+    width: 256px !important;
+    @media(max-width:1200px){
+        width: 230px !important;
+    }
+
+    .mat-expansion-panel-header {
+        font: 700 14px/18px ModernEra;
+        color: $C_Secondary_black;
+    }
+
+    .mat-expansion-panel-body {
+        padding: 0;
+    }
+
+    .mat-expansion-panel-header-description,
+    .mat-expansion-indicator::after {
+        color: $new_primary_black //$white
+    }
+}
+
+/* mat sidebar width */
+
+/* daterange Calender */
+
+.md-drppicker {
+    padding: 0 !important;
+
+    .calendar {
+        &.left {
+            border-right: 1px solid $borderColorGray !important;
+        }
+
+        .calendar-table {
+            border-bottom: 1px solid $borderColorGray !important;
+        }
+    }
+
+    .ranges ul li button {
+        color: $Secondary_black !important;
+        font: 600 14px/24px ModernEra;
+
+        &.active {
+            background: $lightWhite !important;
+            color: $toggleActive !important;
+        }
+    }
+
+    table {
+        th {
+            color: $Secondary_black !important;
+            font: 600 14px/24px ModernEra;
+
+            &.available:hover {
+                // background: $lightWhite !important;
+                border-radius: 8px !important;
+                padding: 10px !important;
+            }
+        }
+
+        td {
+            font: 600 13px/23px ModernEra;
+            width: 40px !important;
+            height: 40px !important;
+
+            &.active:hover {
+                background-color: $Primary_Blue !important;
+                opacity: 1 !important;
+            }
+
+            &.active {
+                background-color: $toggleActive !important;
+                opacity: 1 !important;
+                color:$white !important;
+            }
+
+            &.in-range {
+                background: $lightWhite !important;
+                color: $toggleActive !important;
+            }
+        }
+    }
+
+    .btn {
+        margin: 12px 0 !important;
+        padding: 8px 35px !important;
+        border-radius: 39px !important;
+        background-color: $toggleActive !important;
+        font: 600 14px/24px ModernEra;
+        color: $white !important;
+
+        &.btn-default {
+            background: $btnDefaultWhite !important;
+            color: $Secondary_black !important;
+            margin-right: 8px !important;
+        }
+    }
+}
+
+/* daterange Calender */
+
+/* ng2telinput drop list width */
+.iti__country-list {
+    width: 300px;
+}
+
+/* ng2telinput drop list width */
+
+.prevent-click {
+    pointer-events: none !important;
+}
+
+.enable-click-event {
+    pointer-events: auto !important;
+}
+
+/* no data */
+.noData {
+    margin: 0 auto 5px;
+    text-align: center;
+}
+
+/* no data */
+
+/* common filter for all filter css */
+.mainFilter {
+    .filterHeader {
+        @include flex-justify;
+        padding: 13px 20px 20px;
+        align-items: center;
+        font: 600 20px/16px ModernEra;
+
+        .btnFiliter {
+            @include btnFilter;
+            background: $White_labing_Black;
+            margin: 0 16px;
+        }
+
+        .btnFilterExport {
+            @include btnFilter;
+            background: $white;
+            border: 0.5px solid $borderColor;
+        }
+    }
+}
+
+.filterBody {
+    @include mainBoxwithBack;
+    border-radius: 4px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+
+    .filterBodyTitle {
+        @include flex-justify;
+
+        h4 {
+            font: 700 16px/16px ModernEra;
+            color: $Secondary_black;
+        }
+    }
+
+    .filterSearch {
+        position: relative;
+
+        input {
+            border: 1px solid $lightmixblueWhitecolor;
+            border-radius: 29px;
+            padding-left: 30px;
+        }
+
+        .filterSearchIcon {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+    }
+
+    .profileBox {
+        @include flex-start;
+
+        .fields {
+            flex-basis: calc(25% - 10px);
+            max-width: calc(25% - 10px);
+            margin: 0 13px 0 0;
+
+            &:nth-child(4n + 0) {
+                margin-right: 0;
+            }
+
+            &.fileld33 {
+                flex-basis: calc(33.33% - 10px);
+                max-width: calc(33.33% - 10px);
+                margin: 0 15px 0 0;
+
+                &:nth-child(3n + 0) {
+                    margin-right: 0;
+                }
+            }
+
+            &.fileld50 {
+                flex-basis: calc(50% - 8px);
+                max-width: calc(50% - 8px);
+                margin: 0 16px 0 0;
+
+                &:nth-child(2n + 0) {
+                    margin-right: 0;
+                }
+            }
+
+            // &.fileld66 {
+            //     flex-basis: calc(66% - 8px);
+            //     max-width: calc(66% - 8px);
+            //     margin: 0 16px 0 0;
+            //     &:nth-child(2n+0) {
+            //         margin-right: 0;
+            //     }
+            // }
+
+            .searchSelect {
+                padding: 0 32px 6px 10px;
+                position: relative;
+
+                .mat-icon {
+                    position: absolute;
+                }
+
+                input {
+                    padding-left: 28px;
+                }
+            }
+        }
+    }
+
+    .filterBtn {
+        font: 600 14px/22px ModernEra;
+
+        &.exportBtn {
+            background: $White_labing_backGray;
+            color: $White_labing_skyBlue;
+            font-family: "ModernEra";
+            border-radius: 40px;
+            padding: 12px 20px;
+
+            .exprtBtnImg {
+                margin-left: 8px;
+                width: 18px;
+                height: 18px;
+            }
+            svg{
+                margin-left: 8px;
+                width: 18px;
+                height: 18px;
+                path{
+                    fill: $White_labing_skyBlue;
+                }
+            }
+        }
+
+        &.cancleBtn {
+            padding: 12px 97px;
+            border: 1px solid $C_Primary_Orange; //$White_labing_Yellow;
+            background-color: $white;
+            border-radius: 38px;
+            margin: 0 20px;
+            color: $C_Primary_Orange; //$White_labing_Yellow;
+
+            @media (max-width: 1450px) {
+                padding: 12px 70px;
+            }
+
+            @media (max-width: 1300px) {
+                padding: 12px 60px;
+            }
+        }
+
+        &.resetBtn {
+            padding: 12px 97px;
+            border: 1px solid $borderColor;
+            background-color: $white;
+            border-radius: 38px;
+            margin: 0 20px;
+            color: $borderColor;
+
+            @media (max-width: 1450px) {
+                padding: 12px 70px;
+            }
+
+            @media (max-width: 1300px) {
+                padding: 12px 60px;
+            }
+        }
+
+        &.applyBtn {
+            padding: 12px 97px;
+            border: 1px solid $C_Primary_Orange; //$White_labing_Yellow;
+            background-color: $C_Primary_Orange;
+            color: $white;
+            border-radius: 38px;
+
+            @media (max-width: 1450px) {
+                padding: 12px 70px;
+            }
+
+            @media (max-width: 1300px) {
+                padding: 12px 60px;
+            }
+        }
+    }
+
+    @media (max-width: 950px) {
+        .resetBtn {
+            padding: 12px 35px !important;
+        }
+
+        .cancleBtn {
+            padding: 12px 35px !important;
+        }
+
+        .applyBtn {
+            padding: 12px 35px !important;
+        }
+    }
+}
+
+/* common filter for all filter css */
+
+/* common filter for v2 filter css */
+.dashboardBoxWithFilter {
+    @include flex-start;
+
+    .dashboardBox {
+        @include flex-start;
+        width: calc(100% - 50px);
+
+        .box {
+            background: $driverBoxV2;
+            flex-basis: calc(20% - 14px);
+            max-width: calc(20% - 14px);
+            margin: 0 14px 20px 0;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+
+            @media (max-width: 1300px) {
+                flex-basis: calc(33% - 14px);
+                max-width: calc(33% - 14px);
+                margin: 0 14px 14px 0;
+                padding: 14px;
+            }
+
+            @media (max-width: 991px) {
+                flex-basis: calc(50% - 14px);
+                max-width: calc(50% - 14px);
+            }
+
+            .infoCircle {
+                position: absolute;
+                top: 7px;
+                right: 7px;
+
+                img {
+                    width: 18px;
+                    height: 18px;
+                    vertical-align: inherit;
+                }
+            }
+
+            &.iceBox {
+                background: $iceBoxV2;
+            }
+
+            &.grayBox {
+                background: $lightWhitecolor;
+
+                .title {
+                    color: $sblue;
+                    font: 500 20px/24px ModernEra;
+                }
+            }
+
+            &.box100 {
+                flex-basis: calc(100%);
+                max-width: calc(100%);
+                @include flex-justify;
+                padding: 0;
+                margin: 0 0 15px 0;
+
+                .leftData {
+                    padding: 20px 24px 15px;
+                }
+            }
+
+            &.kiloMeter {
+                background: $kilometerBoxV2;
+            }
+
+            &.safeDriving {
+                background: $new_sidebar_active; //$safeDrivingBoxV2;
+            }
+
+            &.driver {
+                background: $driver1BoxV2;
+            }
+
+            &.trips {
+                background: $tripBoxV2;
+            }
+
+            &.vehicles {
+                background: $vehicleBoxV2;
+            }
+
+            .title {
+                font: 600 20px/24px ModernEra;
+                margin-bottom: 6px;
+                color: $white;
+                @include ellipsis;
+
+                @media (max-width: 1440px) {
+                    font: 600 16px/20px ModernEra;
+                }
+            }
+
+            .valueSec {
+                align-items: center;
+                @include flex-justify;
+
+                .value {
+                    font: 800 24px/24px ModernEra;
+                    color: $white;
+                    margin-bottom: 0;
+
+                    @media (max-width: 1440px) {
+                        font: 800 18px/18px ModernEra;
+                    }
+
+                    &.noDrivers {
+                        color: $Secondary_Alerts;
+                    }
+
+                    &.dViolated {
+                        color: $danger;
+                    }
+                }
+
+                .valueRight {
+                    font: 700 10px/16px ModernEra;
+                    padding: 0px 5px;
+                    border-radius: 16px;
+                    color: $white;
+
+                    img {
+                        width: 7px;
+                        height: 7px;
+                    }
+
+                    @media (max-width: 1440px) {
+                        padding: 0px 2px;
+                    }
+                }
+            }
+        }
+    }
+
+    .filterBtnBackGray {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 33px 13px;
+        background-color: rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        border-radius: 8px;
+
+        @media (max-width: 1300px) {
+            max-height: 92px;
+            height: 100%;
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+}
+
+/* common filter css v2 */
+
+/* trip & trip detail page ride of max class */
+.ridOfmax {
+    background-color: $redColor;
+}
+
+.busyRoad {
+    background-color: $Secondary_Blue;
+}
+
+.quietRoad {
+    background-color: $Primary_Blue;
+}
+
+.buildUp {
+    background-color: $skyBlue;
+}
+
+.ridOfHighSpeed {
+    background-color: $Secondary_Dark;
+}
+
+.speedAvg {
+    background-color: $Secondary_Alerts;
+}
+
+.driveTooFast {
+    background-color: $danger;
+}
+
+.roadFactorSec {
+    @include flex-start;
+    align-items: center;
+
+    .typeTitle {
+        font: 700 16px/24px ModernEra_Bold !important;
+        margin-bottom: 12px;
+    }
+}
+
+.getRide {
+    @include flex-start;
+
+    p {
+        margin-right: 42px;
+        font: 600 13px/16px ModernEra !important;
+        color: $Secondary_black;
+
+        @media (max-width: 1200px) {
+            margin-right: 25px;
+        }
+
+        &:nth-last-child(1) {
+            margin-right: 0;
+        }
+
+        &::before {
+            display: inline-block;
+            content: "";
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            height: 6px;
+            width: 6px;
+            margin-right: 6px;
+            background-color: $dark_gray;
+        }
+
+        &.ridOfmax1::before {
+            background-color: $redColor;
+        }
+
+        &.busyRoad1::before {
+            background-color: $Secondary_Blue;
+        }
+
+        &.quietRoad1::before {
+            background-color: $quiteRoad;
+        }
+
+        &.buildUp1::before {
+            background-color: $skyBlue;
+        }
+
+        &.ridOfHighSpeed1::before {
+            background-color: $Secondary_Dark;
+        }
+
+        &.braking::before {
+            background-color: $danger;
+        }
+
+        &.warning::before {
+            background-color: $orange;
+        }
+
+        &.speed::before {
+            background-color: $Secondary_Alerts;
+        }
+
+        &.idiling::before {
+            background-color: $yellow;
+        }
+
+        span.msg {
+            margin-left: 15px;
+        }
+    }
+}
+
+.speedRoadSec {
+    .ngx-gauge-meter .reading-block {
+        font: 600 13px/24px ModernEra !important;
+        color: $Secondary_black !important;
+        transform: translateY(36px) !important;
+    }
+}
+
+/* trip & trip detail page ride of max class */
+
+/* Mat-Accordian common css */
+.mat-expansion-Common {
+    .mat-expansion-panel {
+        padding: 16px 10px;
+        background: $white;
+        border: 0.5px solid $borderColor;
+        border-radius: 15px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .mat-expansion-panel-header {
+        padding: 0 14px 0;
+        height: auto !important;
+
+        .mat-content {
+            @include flex-start;
+            align-items: center;
+        }
+
+        /* toggle btn css  */
+        .mat-expansion-indicator {
+            border: 1px solid $borderColor;
+            border-radius: 25px;
+            background: $white;
+            width: 38px;
+            padding: 7px 13px;
+            height: 38px;
+        }
+
+        /* toggle btn css  */
+    }
+
+    .mat-expansion-panel-body {
+        padding: 12px 14px 0;
+        margin-top: 12px;
+        border-top: 0.5px solid $borderColor;
+    }
+}
+
+/* Mat-Accordian Common css */
+/* common title with back Button css detail page */
+.titleWithBack {
+    @include flex-start;
+    align-items: center;
+    padding: 10px 0 24px;
+
+    .backBtnImg {
+        margin-right: 10px;
+    }
+
+    .BackTitle {
+        font: 700 20px/16px ModernEra_Bold !important;
+        color: $Secondary_black;
+        margin-bottom: 0;
+    }
+}
+
+/* common title with back Button css detail page */
+
+/* detail page css */
+
+/* Road type distribution */
+.roadDistribution {
+    .typeTitle {
+        font: 600 18px/24px ModernEra !important;
+        margin-bottom: 11px;
+        color: $Secondary_black;
+    }
+
+    div:first-child {
+        border-radius: 40px 0 0 40px;
+    }
+
+    div:last-child {
+        border-radius: 0 40px 40px 0;
+    }
+
+    div:only-child {
+        border-radius: 40px 40px 40px 40px;
+    }
+
+    .msg {
+        @include msg;
+        padding: 3px 8px;
+
+        &.extraPadding {
+            padding: 4px 14px;
+            font: 14px/24px ModernEra !important;
+        }
+    }
+
+    .noDataMainBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // min-height: 110px;
+
+        .noData {
+            // color: $nightBackBlack;
+            // background: #e6e7e8;
+            // border-radius: 9px;
+            // width: 100px;
+            margin: 0 auto 5px;
+            text-align: center;
+        }
+    }
+}
+
+/* Road type distribution */
+
+.detailPage {
+    @include flex-start;
+    margin-bottom: 20px;
+
+    .tripDetails {
+        flex-basis: calc(60% - 20px);
+        max-width: calc(60% - 20px);
+        margin-right: 20px;
+        @include mainBoxwithBack;
+
+        &.tripDetailFullwidth {
+            flex-basis: 100%;
+            max-width: 100%;
+            margin-right: 0;
+        }
+
+        .tripDetailHead {
+            border-radius: 10px 10px 0px 0px;
+            padding: 8px 30px;
+            background-color: $White_labing_Black;
+            @include flex-justify;
+            align-items: center;
+
+            .tripDetailTitle {
+                font: 700 14px/18px ModernEra;
+                color: $white;
+                margin-bottom: 0;
+            }
+
+            .exportRightIcon svg {
+                path {
+                    fill: $white;
+                }
+            }
+        }
+
+        .tripDetailTopBox {
+            padding: 16px 20px 0 20px;
+
+            .tripDetailBox {
+                border: 1px solid $lightmixblueWhitecolor;
+                border-radius: 8px;
+                background-color: $white;
+                padding: 26px 25px;
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        display: flex;
+                        margin-bottom: 15px;
+                        position: relative;
+                        align-items: center;
+                        svg{
+                            width: 30px;
+                            path{
+                                fill:$White_labing_Yellow
+                            }
+                        }
+
+                        &::after {
+                            position: absolute;
+                            content: " ";
+                            transform: translate(50%);
+                            border: 1px dashed $White_labing_Yellow;
+                            top: 28px;
+                            left: 12px;
+                            height: 28px;
+                        }
+
+                        &:nth-last-child(1)::after {
+                            display: none;
+                        }
+
+                        &:nth-last-child(1) {
+                            margin-bottom: 0;
+                        }
+
+                        img {
+                            margin-right: 13px;
+                        }
+
+                        .fromTitle {
+                            font: 600 12px/18px ModernEra;
+                            color: $Secondary_black;
+                        }
+
+                        .timeDesc {
+                            font: 600 10px/18px ModernEra;
+                            color: $White_labing_Yellow;
+                        }
+                    }
+                }
+            }
+        }
+
+        .tripDetailBoxes {
+            @include flex-start;
+
+            .tripBoxFields50 {
+                flex-basis: calc(50% - 10px);
+                max-width: calc(50% - 10px);
+                margin: 0 20px 20px 0;
+                background: $white;
+                border: 1px solid $lightmixblueWhitecolor;
+                border-radius: 8px;
+                padding: 18px 9px;
+                text-align: center;
+
+                &:nth-child(2n + 0) {
+                    margin-right: 0;
+                }
+            }
+
+            .tripBoxFields {
+                background: $white;
+                border: 1px solid $lightmixblueWhitecolor;
+                border-radius: 8px;
+                flex-basis: calc(33.33% - 13px);
+                max-width: calc(33.33% - 13px);
+                margin: 0 19px 20px 0;
+                padding: 18px 9px;
+                text-align: center;
+
+                &:nth-child(3n + 0) {
+                    margin-right: 0;
+                }
+            }
+
+            .tripId {
+                font: 800 14px/18px ModernEra;
+                margin-bottom: 6px;
+                color: $White_labing_Black;
+            }
+
+            .tripDesc {
+                font: 600 12px/18px ModernEra;
+                color: $Secondary_black;
+                margin-bottom: 0;
+            }
+        }
+
+        .noData {
+            margin: 0 auto 5px;
+            text-align: center;
+        }
+
+        .speedRoadSec {
+            @include flex-start;
+
+            .speedRoadLeft {
+                flex-basis: calc(60% - 7px);
+                max-width: calc(60% - 7px);
+                margin-right: 7px;
+                @include flex-start;
+
+                .scoreBoxGuage {
+                    flex-basis: calc(33.33% - 10px);
+                    max-width: calc(33.33% - 10px);
+                    margin: 0 14px 20px 0;
+                    border: 1px solid $lightmixblueWhitecolor;
+                    padding: 14px 14px 0;
+                    border-radius: 8px;
+                    text-align: center;
+
+                    &:nth-last-child(1) {
+                        margin-right: 0;
+                    }
+
+                    // @media(max-width:1200px){
+                    //     padding: 8px 8px 0;
+                    // }
+
+                    .speedGraphTitle {
+                        font: 600 12px/18px ModernEra;
+                        color: $Secondary_black;
+                        margin-bottom: 10px;
+
+                        @media(max-width:1200px) {
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
+
+            .speedRoadRight {
+                flex-basis: calc(40% - 7px);
+                max-width: calc(60% - 7px);
+                margin-left: 7px;
+
+                .scoreBoxRight {
+                    margin: 0 0 20px 0;
+                    border: 1px solid $lightmixblueWhitecolor;
+                    padding: 14px 14px 0;
+                    border-radius: 8px;
+                    @include flex-start;
+
+                    @media(max-width:1200px) {
+                        padding: 8px 8px 0;
+                    }
+
+                    .filerHalf {
+                        flex-basis: calc(50%);
+                        max-width: calc(50%);
+                        text-align: center;
+                        position: relative;
+
+                        &:nth-child(1):after {
+                            content: "";
+                            position: absolute;
+                            width: 1px;
+                            top: 16px;
+                            background-color: $whiteColor;
+                            height: 70px;
+                            right: 0;
+                        }
+                    }
+
+                    .borderRight {
+                        width: 1px;
+                        height: 70px;
+                        background-color: $lightmixblueWhitecolor;
+                    }
+
+                    .speedGraphTitle {
+                        font: 600 12px/18px ModernEra;
+                        color: $Secondary_black;
+                        // width: 114px;
+                        margin: 0 auto 2px;
+                    }
+                }
+            }
+        }
+
+        .dayNightSec {
+            @include flex-start;
+
+            .dayNightHeading {
+                font: 600 13px/18px ModernEra;
+                color: $Secondary_black;
+                margin-bottom: 6px;
+            }
+
+            .dayNightBox {
+                flex-basis: calc(50% - 15px);
+                max-width: calc(50% - 15px);
+                margin: 0 15px 20px 0;
+
+                &.chart:hover {
+                    border: 1px solid #e0e3e7;
+                    border-radius: 8px;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 15px;
+                    margin-right: 0;
+                }
+
+                .commonBox {
+                    border-radius: 8px;
+                    padding: 11px 24px;
+                    @include flex-justify;
+                    align-items: center;
+
+                    &.night {
+                        background: $nightBackBlack;
+
+                        .nightDetail {
+                            color: $white;
+                            font: 700 14px/18px ModernEra;
+                        }
+                    }
+
+                    &.day {
+                        background: $yellow;
+
+                        .nightDetail {
+                            color: $nightTextColor;
+                            font: 700 14px/18px ModernEra;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* detail page css */
+
+/* trip history */
+.tripHistory {
+    @include mainBoxwithBack;
+
+    .tripHisTop {
+        @include flex-justify;
+        align-items: center;
+        border-bottom: 0.5px solid $lightmixblueWhitecolor;
+        padding: 18px 24px;
+
+        .tripHisTopLeft {
+            @include flex-start;
+            align-items: center;
+        }
+
+        .tripTitle {
+            font: 600 16px/16px ModernEra;
+            color: $Secondary_black;
+        }
+    }
+
+    .tripMainBox {
+        padding: 22px 24px;
+    }
+
+    .tripMap {
+        width: 100%;
+        height: 550px;
+    }
+}
+
+/* trip history */
+
+/* table css */
+.booking-table {
+    th {
+        font: 500 12px/18px ModernEra;
+        color: $white;
+    }
+
+    .mat-sort-header-arrow {
+        color: $C_Primary_White; //$Secondary_Blue_dark;
+        opacity: 0.75;
+    }
+
+    td {
+        &.mat-cell {
+            font: 13px/16px ModernEra;
+            color: $black;
+        }
+    }
+
+    .date {
+        @include msg;
+    }
+}
+
+mat-row,
+mat-footer-row,
+td.mat-cell,
+td.mat-footer-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $Secondary_black !important;
+}
+
+mat-row,
+mat-header-row,
+mat-footer-row,
+th.mat-header-cell {
+    border-color: transparent;
+    font: 12px/18px ModernEra !important;
+    color: $white !important;
+}
+
+tr.mat-row,
+tr.mat-footer-row {
+    &:nth-child(odd) {
+        background: $tableOddBack;
+        border-radius: 8px;
+        height: 34px;
+    }
+
+    &:nth-child(even) {
+        background: $white;
+    }
+}
+
+.driverTable {
+
+    tr.mat-row,
+    tr.mat-footer-row {
+        background: $white;
+        border-radius: 8px;
+        height: 42px;
+    }
+
+    mat-row,
+    mat-footer-row,
+    td.mat-cell,
+    td.mat-footer-cell {
+        border-bottom: 0.6px solid $lightmixblueWhitecolor !important;
+    }
+
+    tr.mat-row {
+        &:nth-last-child(1) {
+
+            td.mat-cell,
+            td.mat-footer-cell {
+                border-bottom: 0 !important;
+            }
+        }
+    }
+}
+
+table th:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+table th:last-child {
+    border-radius: 0 5px 5px 0;
+}
+/* table css */
+
+.profileName {
+    // padding: 10px;
+    font: 500 18px/23px ModernEra !important;
+    color: $Primary_Blue;
+    padding: 10px 10px 0 10px;
+     margin-bottom: 0 !important;
+}
+.profileNameDark{
+    // padding: 10px;
+    font: 300 18px/23px ModernEra_Bold !important;
+    color: $black;
+    padding: 10px 10px 0 10px;
+     margin-bottom: 0 !important;
+}
+
+.chartZoom {
+    font: 12px/18px ModernEra !important;
+    padding: 3px 30px;
+    color: $white;
+    border-radius: 24px;
+    background: $skyBlue;
+    padding: 3px 10px;
+}
+
+.mat-dialog-container .mat-dialog-content {
+    padding: 30px 24px !important;
+    overflow: hidden !important;
+}
+
+.groups {
+    .svg-chart-container {
+        background-color: white !important;
+
+        .node-rect {
+            fill: #939eaa;
+            border-radius: 44px;
+            border: none;
+            stroke: none;
+        }
+
+        g.node:first-of-type {
+            .node-rect {
+                fill: #001e50;
+                border-radius: 44px;
+                border: none;
+                stroke: none;
+            }
+        }
+
+        text {
+            fill: white;
+            font-size: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    svg {
+        path {
+            stroke: black !important;
+        }
+    }
+}
+
+/* comon small model class */
+.dark-modal {
+    .modal-content {
+        max-width: 335px;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 2px solid #fff;
+        padding: 30px 12px 20px;
+
+        .heading {
+            font: 600 18px/16px ModernEra;
+            color: $Secondary_black;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .content {
+            font: 600 16px/25px ModernEra;
+            color: $Secondary_black;
+            max-width: 270px;
+            width: 100%;
+            text-align: center;
+            margin: 25px auto 10px;
+        }
+
+        .applyBtn,
+        .cancleBtn {
+            padding: 10px 60px;
+        }
+
+        .cancleBtn {
+            margin: 0 10px 0 0;
+        }
+    }
+}
+
+.accesClientCheck {
+    .mat-checkbox {
+        max-width: 185px;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+}
+
+// .mat-sort-header-arrow {
+//     color: $white !important;
+//     // opacity: 1 !important;
+// }
+
+.naData {
+    line-height: 70px;
+    font: 600 16px/16px ModernEra;
+    color: $Secondary_black;
+}
+
+/* comon small model class */
+
+/* tooltips css common start */
+// .tooltip-inner{
+//     background: $white;
+//     box-shadow: 0px 8.27273px 16.5455px rgba(35, 23, 5, 0.12);
+//     border-radius: 6.20455px;
+//     color: $tooltipsTextColor;
+//     padding: 13px;
+//     max-width: 250px;
+//     width: 100%;
+// }
+// .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^=bottom] .arrow::before{
+//     border-bottom-color: $white;
+// }
+
+/* tooltips css common end */
+.pl-24 {
+    padding-left: 24px !important;
+}
+
+.custom-dialog-container {
+    .mat-dialog-container 
+    .mat-dialog-container {
+        max-height: 600px;
+        height: 100%;
+        // overflow-y: scroll;
+        // .profileName {
+        //     padding: 10px 10px 0 10px;
+        //     margin-bottom: 0;
+        // }
+
+        @media(max-width:1200px) {
+            max-height: 460px;
+            height: 100%;
+        }
+        .mat-dialog-content {
+            padding: 30px 24px 0 24px !important;
+        }
+    }
+}
+
+.chartDiv {
+    height: 400px;
+    @media(max-width:1200px) {
+        height: 300px;
+    }
+}
+.dashboardBoxWithFilter {
+    @include flex-start;
+  
+    .dashboardBox {
+      @include flex-start;
+      width: calc(100% - 50px);
+  
+      .box {
+        background: linear-gradient(93.52deg, #39d0ff -18.56%, #3656ff 102.17%);
+        flex-basis: calc(20% - 14px);
+        max-width: calc(20% - 14px);
+        margin: 0 14px 20px 0;
+        border-radius: 4px;
+        padding: 20px;
+        position: relative;
+  
+        @media (max-width: 1300px) {
+          flex-basis: calc(33% - 14px);
+          max-width: calc(33% - 14px);
+        }
+  
+        @media (max-width: 991px) {
+          flex-basis: calc(50% - 14px);
+          max-width: calc(50% - 14px);
+        }
+  
+        .infoCircle {
+          position: absolute;
+          top: 7px;
+          right: 7px;
+  
+          img {
+            width: 18px;
+            height: 18px;
+            vertical-align: inherit;
+          }
+        }
+  
+        &.iceBox {
+          background: linear-gradient(93.52deg, #f0825d -18.56%, #ff9950 102.17%);
+        }
+  
+        &.grayBox {
+          background: #f9fafb;
+  
+          .title {
+            color: $sblue;
+            font: 500 20px/24px ModernEra;
+          }
+        }
+  
+        &.box100 {
+          flex-basis: calc(100%);
+          max-width: calc(100%);
+          @include flex-justify;
+          padding: 0;
+          margin: 0 0 15px 0;
+  
+          .leftData {
+            padding: 20px 24px 15px;
+          }
+        }
+  
+        &.kiloMeter {
+          background: $new_sidebar_active; //$color_violet_dark;
+          //opacity: 0.8;
+        }
+  
+        &.safeDriving {
+          background: $new_sidebar_active; //$color_violet_dark;
+        }
+  
+        &.driver {
+          background: $new_sidebar_active; //$color_violet_dark;
+          //opacity: 0.8;
+        }
+  
+        &.trips {
+          background: $new_sidebar_active; //$color_violet_dark;
+          //opacity: 0.8;
+        }
+  
+        &.vehicles {
+          background: $new_sidebar_active; //$color_violet_dark;
+          //opacity: 0.8;
+        }
+  
+        .title {
+          font: 700 20px/24px ModernEra;
+          margin-bottom: 6px;
+          color: $white;
+          @include ellipsis;
+  
+          // @media (max-width: 1440px) {
+          //   font: 700 16px/20px ModernEra;
+          // }
+        }
+  
+        .valueSec {
+          align-items: center;
+          @include flex-justify;
+  
+          .value {
+            font: 400 24px/24px ModernEra;
+            color: $white;
+            margin-bottom: 0;
+  
+            @media (max-width: 1440px) {
+              font: 400 18px/18px ModernEra;
+            }
+  
+            &.noDrivers {
+              color: $Secondary_Alerts;
+            }
+  
+            &.dViolated {
+              color: $danger;
+            }
+          }
+  
+          .valueRight {
+            font: 700 10px/16px ModernEra;
+            padding: 5px 5px;
+            border-radius: 16px;
+            color: $white;
+  
+            img {
+              width: 9px;
+              height: 10px;
+              margin-right: 3px;
+              margin-bottom: 3px;
+            }
+  
+            @media (max-width: 1440px) {
+              padding: 0px 2px;
+            }
+          }
+        }
+      }
+    }
+  
+    .filterBtn {
+      img {
+        width: 50px;
+      }
+    }
+  }
+
+   button.gm-ui-hover-effect {
+    visibility: hidden;
+ }
+ 
+//  .shimmer-loading{
+//      background-color: red;
+//  }
+
+ ngx-shimmer-loading{
+    flex-basis: calc(20% - 14px);
+    max-width: calc(20% - 14px);
+    margin: 0 14px 20px 0;
+    .ngx-shimmer{
+        // background-color: #DDDDDD;
+        // background: linear-gradient(to right,#DDDDDD 0,#C6C6C6 20%,#BDBDBD 40%,#9D9D9D 100%);
+        // animation: 8s linear infinite forwards shimmerEffect;
+    }
+}
